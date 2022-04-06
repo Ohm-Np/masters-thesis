@@ -8,4 +8,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+Cloud-based mass processing of structured global geo-datasets in R: A case
+study of the world database on protected areas and conservation related
+geo-variables.
