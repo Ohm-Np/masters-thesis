@@ -1,5 +1,3 @@
-# masters-thesis
+## Masters thesis
 
-A [workflowr][] project.
-
-[workflowr]: https://github.com/workflowr/workflowr
+Repo on building phase.
