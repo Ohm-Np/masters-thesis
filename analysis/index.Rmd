@@ -11,3 +11,15 @@ editor_options:
 Cloud-based mass processing of structured global geo-datasets in R: A case
 study of the world database on protected areas and conservation related
 geo-variables.
+
+Chapters:
+
+### Raster benchmarks
+
+- [terraZonal vs terraExtract vs exactExtractr](terra_exact_benchmarks.html)
+
+- [fishnets terra vs exact](fishnets_benchmarks.html)
+
+### Vector benchmarks
+
+- [polygon geospatial operations](vector_benchmarks.html)
