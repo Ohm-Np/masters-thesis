@@ -284,3 +284,53 @@ result.plot3 <- ggplot(data = df.result.long3, aes(x=reorder(name, -value), y=va
 result.plot3
 ```
 
+
+### st_intersection on single polygon (fishnets)
+
+```{r eco3, message=FALSE, warning=FALSE, include=FALSE}
+
+t5 <- read_sf("data/fishnet_5_sqkm.gpkg")
+t10 <- read_sf("data/fishnet_10_sqkm.gpkg")
+t25 <- read_sf("data/fishnet_25_sqkm.gpkg")
+t50 <- read_sf("data/fishnet_50_sqkm.gpkg")
+t100 <- read_sf("data/fishnet_100_sqkm.gpkg")
+t200 <- read_sf("data/fishnet_200_sqkm.gpkg")
+t500 <- read_sf("data/fishnet_500_sqkm.gpkg")
+t1000 <- read_sf("data/fishnet_1000_sqkm.gpkg")
+t5000 <- read_sf("data/fishnet_5000_sqkm.gpkg")
+t10000 <- read_sf("data/fishnet_10000_sqkm.gpkg")
+
+library(parallel)
+stats <- lapply(c(t5[1,], t10[1,], t25[1,], t50[1,], t100[1,], t200[1,], t500[1,], t1000[1,], t5000[1,], t10000[1,]), function(j) {
+  t1 <- Sys.time()
+  cropped <- st_intersection(eco, j)
+  t2 <- Sys.time()
+  diff <- as.numeric(t2 - t1, units = "secs")
+})
+zstats <- unlist(stats)
+
+
+df.result4 <- data.frame(Function = "st_intersection",
+                        hexa_5 = zstats[[1]],
+                        hexa_10 = zstats[[2]],
+                        hexa_25 = zstats[[3]],
+                        hexa_50 = zstats[[4]],
+                        hexa_100 = zstats[[5]],
+                        hexa_200 = zstats[[6]],
+                        hexa_500 = zstats[[7]],
+                        hexa_1000 = zstats[[8]],
+                        hexa_5000 = zstats[[9]],
+                        hexa_10000 = zstats[[10]])
+df.result.long4 <- pivot_longer(df.result4,
+                               cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100", "hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+result.plot4 <- ggplot(data = df.result.long4, aes(x=reorder(name, -value), y=value, fill=Function)) + 
+  geom_col(position = 'dodge') +
+  xlab('Type of Polygons') +
+  ylab('Time elapsed (s)') +
+  ggtitle('comparison of time taken to intersect global ecoregion polygons (one polygon at a time)')
+```
+
+```{r plottt3, message=FALSE, warning=FALSE, include = TRUE, fig.width = 12}
+
+result.plot4
+```
