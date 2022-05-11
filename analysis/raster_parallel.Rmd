@@ -161,7 +161,10 @@ resultf
 results
 ```
 
+### Findings
 
+1. with increase in the resolution and increase in number of polygons - terra zonal performs better in sequential mode.
+2. many more to come
 
 ## exact extract
 
@@ -291,6 +294,12 @@ results
 ```
 
 
+### Findings
+
+1. with increase in the resolution and increase in number of polygons - terra zonal performs better in sequential mode.
+2. many more to come
+
+
 ## terra zonal
 
 Here we will visualize processing results in barchart - for all resolution rasters used in study 
@@ -357,3 +366,240 @@ results
 ```
 
 
+### Findings
+
+1. with increase in the resolution and increase in number of polygons - terra zonal performs better in sequential mode.
+2. many more to come
+3. processing big rasters result in crash of the server
+
+
+## Which functions to choose?
+
+### 0.1 degree resolution
+
+```{r 0.1 degree final, message=FALSE, warning=FALSE, include=FALSE}
+
+final01 <- read.csv("data/results/rasters/final_01.csv")
+f <- final01[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.1 degree)")
+
+
+s <- final01[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.1 degree)")
+```
+
+```{r 0.1 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+#### the best combination
+
+1. using terra zonal in sequential mode
+
+
+### 0.01 degree resolution
+
+```{r 0.01 degree final, message=FALSE, warning=FALSE, include=FALSE}
+
+final001 <- read.csv("data/results/rasters/final_001.csv")
+f <- final001[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+
+
+s <- final001[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+
+# w/o terra zonal
+final001_new <- read.csv("data/results/rasters/final_001_wo_tz8-16.csv")
+f <- final001_new[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+
+
+s <- final001_new[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results_new <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+```
+
+```{r 0.01 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+Since, we couldn't visualize properly the lower range of values, lets remove terra zonal 8 and 16 cores from the graph.
+
+```{r 0.01 degree new final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf_new
+results_new
+```
+
+
+#### the best combination
+
+1. using terra zonal in sequential mode
+
+
+### 0.001 degree resolution
+
+```{r 0.001 degree final, message=FALSE, warning=FALSE, include=FALSE}
+
+final0001 <- read.csv("data/results/rasters/final_0001.csv")
+f <- final0001[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.001 degree)")
+
+
+s <- final0001[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.001 degree)")
+
+# w/o terra extract (sequential)
+final0001_new <- final0001[2:6, ]
+f <- final0001_new[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+
+
+s <- final0001_new[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results_new <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+```
+
+```{r 0.001 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+Since, terra extract in sequential mode has very high values compared to other combination of functions and cores, we will not take it into consideration and visualize only the close values.
+
+```{r 0.001 degree new final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf_new
+results_new
+```
+
+
+#### the best combination
+
+1. using terra zonal in sequential mode
+
+
+### 0.0005 degree resolution
+
+```{r 0.0005 degree final, message=FALSE, warning=FALSE, include=FALSE}
+
+final00005 <- read.csv("data/results/rasters/final_00005.csv")
+f <- final00005[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+
+
+s <- final00005[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+
+# w/o terra extract (sequential)
+final00005_new <- final00005[2:6, ]
+f <- final00005_new[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+
+
+s <- final00005_new[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results_new <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+```
+
+```{r 0.0005 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+Since, terra extract in sequential mode has very high values compared to other combination of functions and cores, we will not take it into consideration and visualize only the close values.
+
+```{r 0.0005 degree new final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf_new
+results_new
+```
+
+
+#### the best combination
+
+1. using terra zonal in sequential mode
