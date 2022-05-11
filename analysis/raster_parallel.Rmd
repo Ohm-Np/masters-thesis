@@ -1,25 +1,359 @@
 ---
-title: "sequential vs parallelization"
+title: "sequential vs parallelization (fishnets)"
 author: "Om Prakash Bhandari"
 date: "4/13/2022"
 output: html_document
 ---
 
-In this study, we are going to check how the processing time will differ - (1) sequential approach (2) parallel approach. Since, we already have the results of sequential approach, here we will process rasters in parallel mode only.
+In this study, we are going to check how the processing time will differ - (1) sequential approach (2) parallel approach. 
 
-#### Polygons - area of interest (aoi)
+```{r libraries, message=FALSE, warning=FALSE, include=FALSE}
 
-1. wdpa polygons (7495)
-2. simplified wdpa polygons (4722)
-3. sample fishnet gridded cells (216425)
-
-
-```{r wdpa, message=FALSE, warning=FALSE, include=FALSE}
 library(sf)
 library(terra)
-library(pbmcapply)
+library(tidyr)
+library(ggplot2)
+library(tidyverse)
+```
 
 
+Four raster objects with varying resolutions were generated across the bbox extent over which the fishnets were created to carry out this study.
+The details of the rasters thus created follows:
+
+a) 0.1 degree (~11.1 km) = size 61.6 KB
+b) 0.01 degree (~1.11 km) = size 6 MB
+c) 0.001 degree (~111 m) = size 594.3 MB
+d) 0.0005 degree (~55.5 m) = size 2.3 GB
+
+Three different functions were used to compute these rasters over 10 different fishnet grid cells:
+a) terra zonal
+b) terra extract
+c) exact extract
+
+At first, the rasters were processed sequentially i.e. which uses only 1 core of the machine for the processing. Then the 
+number of cores was increased to 8 and thus processing the rasters parallelly. Finally, the cores were increased up to
+16. Thus, there are several results generated through this study which we will see in the bar chart below.
+
+## terra extract
+
+Here we will visualize processing results using terra extract in the form of barchart - for all resolution rasters used in study.
+
+#### 0.1 degree resolution
+
+```{r 0.1 degree te, message=FALSE, warning=FALSE, include=FALSE}
+
+te01 <- read.csv("data/results/rasters/te_01.csv")
+f <- te01[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.1 degree) with terra extract using number of core/s")
+
+
+s <- te01[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.1 degree) with terra extract using number of core/s")
+```
+
+```{r 0.1 degree te plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+#### 0.01 degree resolution
+
+```{r 0.01 degree te, message=FALSE, warning=FALSE, include=FALSE}
+
+te001 <- read.csv("data/results/rasters/te_001.csv")
+f <- te001[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.01 degree) with terra extract using number of core/s")
+
+
+s <- te001[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.01 degree) with terra extract using number of core/s")
+```
+
+```{r 0.01 degree te plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+#### 0.001 degree resolution
+
+```{r 0.001 degree te, message=FALSE, warning=FALSE, include=FALSE}
+
+te0001 <- read.csv("data/results/rasters/te_0001.csv")
+f <- te0001[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.001 degree) with terra extract using number of core/s")
+
+
+s <- te0001[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.001 degree) with terra extract using number of core/s")
+```
+
+```{r 0.001 degree te plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+#### 0.0005 degree resolution
+
+```{r 0.0005 degree te, message=FALSE, warning=FALSE, include=FALSE}
+
+te00005 <- read.csv("data/results/rasters/te_00005.csv")
+f <- te00005[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.0005 degree) with terra extract using number of core/s")
+
+
+s <- te00005[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.0005 degree) with terra extract using number of core/s")
+```
+
+```{r 0.0005 degree te plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+
+## exact extract
+
+Here we will visualize processing results in barchart - for all resolution rasters used in study 
+
+#### 0.1 degree resolution
+
+```{r 0.1 degree ee, message=FALSE, warning=FALSE, include=FALSE}
+
+ee01 <- read.csv("data/results/rasters/ee_01.csv")
+f <- ee01[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.1 degree) with exact extract using number of core/s")
+
+
+s <- ee01[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.1 degree) with exact extract using number of core/s")
+```
+
+```{r 0.1 degree ee plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+#### 0.01 degree resolution
+
+```{r 0.01 degree ee, message=FALSE, warning=FALSE, include=FALSE}
+
+ee001 <- read.csv("data/results/rasters/ee_001.csv")
+f <- ee001[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.01 degree) with exact extract using number of core/s")
+
+
+s <- ee001[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.01 degree) with exact extract using number of core/s")
+```
+
+```{r 0.01 degree ee plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+#### 0.001 degree resolution
+
+```{r 0.001 degree ee, message=FALSE, warning=FALSE, include=FALSE}
+
+ee0001 <- read.csv("data/results/rasters/ee_0001.csv")
+f <- ee0001[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.001 degree) with exact extract using number of core/s")
+
+
+s <- ee0001[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.001 degree) with exact extract using number of core/s")
+```
+
+```{r 0.001 degree ee plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+#### 0.0005 degree resolution
+
+```{r 0.0005 ee degree, message=FALSE, warning=FALSE, include=FALSE}
+
+ee00005 <- read.csv("data/results/rasters/ee_00005.csv")
+f <- ee00005[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.0005 degree) with exact extract using number of core/s")
+
+
+s <- ee00005[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.0005 degree) with exact extract using number of core/s")
+```
+
+```{r 0.0005 degree ee plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+## terra zonal
+
+Here we will visualize processing results in barchart - for all resolution rasters used in study 
+
+#### 0.1 degree resolution
+
+```{r 0.1 degree tz, message=FALSE, warning=FALSE, include=FALSE}
+
+tz01 <- read.csv("data/results/rasters/tz_01.csv")
+f <- tz01[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.1 degree) with terra zonal using number of core/s")
+
+
+s <- tz01[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.1 degree) with terra zonal using number of core/s")
+```
+
+```{r 0.1 degree tz plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
+```
+
+
+#### 0.01 degree resolution
+
+```{r 0.01 degree tz, message=FALSE, warning=FALSE, include=FALSE}
+
+tz001 <- read.csv("data/results/rasters/tz_001.csv")
+f <- tz001[,1:6]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("hexa_5", "hexa_10", "hexa_25", "hexa_50", "hexa_100"))
+resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.01 degree) with terra zonal using number of core/s")
+
+
+s <- tz001[,c(1,7:11)]
+longs <- tidyr::pivot_longer(s,
+                             cols = c("hexa_200", "hexa_500", "hexa_1000", "hexa_5000", "hexa_10000"))
+results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken to compute raster statistics (0.01 degree) with terra zonal using number of core/s")
+```
+
+```{r 0.01 degree tz plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+resultf
+results
 ```
 
 
