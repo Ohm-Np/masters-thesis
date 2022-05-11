@@ -1,0 +1,25 @@
+---
+title: "sequential vs parallelization"
+author: "Om Prakash Bhandari"
+date: "4/13/2022"
+output: html_document
+---
+
+In this study, we are going to check how the processing time will differ - (1) sequential approach (2) parallel approach. Since, we already have the results of sequential approach, here we will process rasters in parallel mode only.
+
+#### Polygons - area of interest (aoi)
+
+1. wdpa polygons (7495)
+2. simplified wdpa polygons (4722)
+3. sample fishnet gridded cells (216425)
+
+
+```{r wdpa, message=FALSE, warning=FALSE, include=FALSE}
+library(sf)
+library(terra)
+library(pbmcapply)
+
+
+```
+
+
