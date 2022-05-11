@@ -20,6 +20,8 @@ Chapters:
 
 - [fishnets terra vs exact](fishnets_benchmarks.html)
 
+- [sequential vs parallelization (fishnets)](raster_parallel.html)
+
 ### Vector benchmarks
 
 - [polygon geospatial operations](vector_benchmarks.html)
