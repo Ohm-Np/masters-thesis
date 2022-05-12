@@ -5,6 +5,8 @@ date: "4/13/2022"
 output: html_document
 ---
 
+## Introduction
+
 In this study, we are going to check how the processing time will differ - (1) sequential approach (2) parallel approach. 
 
 ```{r libraries, message=FALSE, warning=FALSE, include=FALSE}
@@ -34,7 +36,7 @@ At first, the rasters were processed sequentially i.e. which uses only 1 core of
 number of cores was increased to 8 and thus processing the rasters parallelly. Finally, the cores were increased up to
 16. Thus, there are several results generated through this study which we will see in the bar chart below.
 
-## terra extract
+## **terra extract**
 
 Here we will visualize processing results using terra extract in the form of barchart - for all resolution rasters used in study.
 
@@ -163,10 +165,11 @@ results
 
 ### Findings
 
-1. with increase in the resolution and increase in number of polygons - terra zonal performs better in sequential mode.
-2. many more to come
+**1. for coarse resolution raster, sequential method performs better**  
+**2. with increase in resolution, parallelization seems to perform way better**  
+**3. however, usage of 8 cores and 16 cores did not affect the result significantly - so it is better to process with 8 cores**  
 
-## exact extract
+## **exact extract**
 
 Here we will visualize processing results in barchart - for all resolution rasters used in study 
 
@@ -296,11 +299,12 @@ results
 
 ### Findings
 
-1. with increase in the resolution and increase in number of polygons - terra zonal performs better in sequential mode.
-2. many more to come
+**1. for coarse resolution raster, sequential method performs better**  
+**2. for higher resolution raster too, sequential method performs bettter**  
+**3. the only case where parallelization (particularly 16 cores) slightly outperforms sequential method is - when the study area polygon is excessively large (~5000 or more sqkm) and rasters are of very high resolution**
 
 
-## terra zonal
+## **terra zonal**
 
 Here we will visualize processing results in barchart - for all resolution rasters used in study 
 
@@ -368,14 +372,24 @@ results
 
 ### Findings
 
-1. with increase in the resolution and increase in number of polygons - terra zonal performs better in sequential mode.
-2. many more to come
-3. processing big rasters result in crash of the server
+**1. for coarse resolution rasters (~1 km) and increase in number of polygons - terra zonal performs better in sequential mode**  
+**2. processing extremely big datasets result in poor performance sometimes leading to failure of R session - so it is not recommended to process very high resolution ratsers using terra zonal**
 
 
-## Which functions to choose?
+## summarise
 
-### 0.1 degree resolution
+|functions|findings|
+|---------|--------|
+|terra extract|1. for coarse resolution raster, sequential method performs better </br> 2. with increase in resolution, parallelization seems to perform way better </br> 3. however, usage of 8 cores and 16 cores did not affect the result significantly - so it is better to process with 8 cores|
+|exact extract|1. for coarse resolution raster, sequential method performs better </br> 2. for higher resolution raster too, sequential method performs bettter </br> 3. the only case where parallelization (particularly 16 cores) slightly outperforms sequential method is - when the study area polygon is excessively large (~5000 or more sqkm) and rasters are of very high resolution|
+|terra zonal|1. for coarse resolution rasters (~1 km) and increase in number of polygons - terra zonal performs better in sequential mode </br> 2. processing extremely big datasets result in poor performance sometimes leading to failure of R session - so it is not recommended to process very high resolution ratsers using terra zonal|
+
+
+## **most suitable combination?**
+
+We only saw above how the three functions perform over the varying raster resolutions and varying study area polygons. So, now is the time to make recommendations for the ideal combination of functions and methods (sequential or parallelization). To carry out this analysis, all the results are aggregated and group by raster resolutions. Thus, for specific raster resolution, we could recommend what could be the most suitable combination.
+
+### 0.1 degree resolution (~11.1 km)
 
 ```{r 0.1 degree final, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -408,10 +422,10 @@ results
 
 #### the best combination
 
-1. using terra zonal in sequential mode
+**1. terra zonal in sequential mode**
 
 
-### 0.01 degree resolution
+### 0.01 degree resolution (~1.11 km)
 
 ```{r 0.01 degree final, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -473,10 +487,11 @@ results_new
 
 #### the best combination
 
-1. using terra zonal in sequential mode
+**1. for large number of polygons and small areas upto ~100 sqkm, terra extract in parallelization mode (16 cores)**  
+**2. for small number of polygons and large areas >100 sqkm, terra zonal in sequential mode**
 
 
-### 0.001 degree resolution
+### 0.001 degree resolution (~111 m)
 
 ```{r 0.001 degree final, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -537,10 +552,11 @@ results_new
 
 #### the best combination
 
-1. using terra zonal in sequential mode
+**1. for large number of polygons and areas upto ~1000 sqkm, exact extract in sequential mode**  
+**2. for extremely large areas >1000 sqkm, exact extract in parallelization mode (16 cores), however the difference with sequential is not so significant (~1 secs)**
 
 
-### 0.0005 degree resolution
+### 0.0005 degree resolution (~55.5 m)
 
 ```{r 0.0005 degree final, message=FALSE, warning=FALSE, include=FALSE}
 
@@ -602,4 +618,16 @@ results_new
 
 #### the best combination
 
-1. using terra zonal in sequential mode
+**1. for large number of polygons and areas upto ~1000 sqkm, exact extract in sequential mode**  
+**2. for extremely large areas >1000 sqkm, exact extract in parallelization mode (16 cores)**
+
+
+## summarise
+
+|**Rasters**|**size**|**Combination of functions and methods**|
+|-----------|--------|----------------------------------------|
+|0.1 degree (~11.1 km) |61.6 KB|1. terra zonal in sequential mode|
+|0.01 degree (~1.11 km) |6 MB|1. for large number of polygons and small areas upto ~100 sqkm, terra extract in parallelization mode (16 cores) </br> 2. for small number of polygons and large areas >100 sqkm, terra zonal in sequential mode|
+|0.001 degree (~111 m)|594.3 MB|1. for large number of polygons and areas upto ~1000 sqkm, exact extract in sequential mode </br> 2. for extremely large areas >1000 sqkm, exact extract in parallelization mode (16 cores), however the difference with sequential is not so significant (~1 secs)|
+|0.0005 degree (~55.5 m)|2.3 GB|1. for large number of polygons and areas upto ~1000 sqkm, exact extract in sequential mode </br> 2. for extremely large areas >1000 sqkm, exact extract in parallelization mode (16 cores)|
+
