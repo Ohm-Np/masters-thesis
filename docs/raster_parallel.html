@@ -355,7 +355,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -364,7 +364,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -373,10 +373,10 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-05-11
+<strong>Last updated:</strong> 2022-05-12
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>masters-thesis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -392,12 +392,12 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -464,16 +464,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistreedd104df16f60c65139da839641b4d942b004384ctargetblankdd104dfa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/Ohm-Np/masters-thesis/tree/dd104df16f60c65139da839641b4d942b004384c" target="_blank">dd104df</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistreefe8e5af863aebd120d16e40698d6d1d53d355db8targetblankfe8e5afa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/Ohm-Np/masters-thesis/tree/fe8e5af863aebd120d16e40698d6d1d53d355db8" target="_blank">fe8e5af</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistreedd104df16f60c65139da839641b4d942b004384ctargetblankdd104dfa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistreefe8e5af863aebd120d16e40698d6d1d53d355db8targetblankfe8e5afa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/Ohm-Np/masters-thesis/tree/dd104df16f60c65139da839641b4d942b004384c" target="_blank">dd104df</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/Ohm-Np/masters-thesis/tree/fe8e5af863aebd120d16e40698d6d1d53d355db8" target="_blank">fe8e5af</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -481,16 +481,6 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .Rproj.user/
-
-Untracked files:
-    Untracked:  data/results/rasters/final_00005.csv
-    Untracked:  data/results/rasters/final_0001.csv
-    Untracked:  data/results/rasters/final_001.csv
-    Untracked:  data/results/rasters/final_001_wo_tz8-16.csv
-    Untracked:  data/results/rasters/final_01.csv
-
-Unstaged changes:
-    Modified:   analysis/raster_parallel.Rmd
 
 </code></pre>
 <p>
@@ -529,6 +519,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/fe8e5af863aebd120d16e40698d6d1d53d355db8/analysis/raster_parallel.Rmd" target="_blank">fe8e5af</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-12
+</td>
+<td>
+wflow_publish(“analysis/raster_parallel.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/analysis/raster_parallel.Rmd" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+<td>
+updates on data results
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/Ohm-Np/masters-thesis/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/raster_parallel.html" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+<td>
+updates on data results
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -587,6 +628,8 @@ create raster analysis and add results
 </div>
 </div>
 </div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
 <p>In this study, we are going to check how the processing time will differ - (1) sequential approach (2) parallel approach.</p>
 <p>Four raster objects with varying resolutions were generated across the bbox extent over which the fishnets were created to carry out this study. The details of the rasters thus created follows:</p>
 <ol style="list-style-type: lower-alpha">
@@ -597,8 +640,9 @@ create raster analysis and add results
 </ol>
 <p>Three different functions were used to compute these rasters over 10 different fishnet grid cells: a) terra zonal b) terra extract c) exact extract</p>
 <p>At first, the rasters were processed sequentially i.e. which uses only 1 core of the machine for the processing. Then the number of cores was increased to 8 and thus processing the rasters parallelly. Finally, the cores were increased up to 16. Thus, there are several results generated through this study which we will see in the bar chart below.</p>
+</div>
 <div id="terra-extract" class="section level2">
-<h2>terra extract</h2>
+<h2><strong>terra extract</strong></h2>
 <p>Here we will visualize processing results using terra extract in the form of barchart - for all resolution rasters used in study.</p>
 <div id="degree-resolution" class="section level4">
 <h4>0.1 degree resolution</h4>
@@ -926,14 +970,13 @@ Ohm-Np
 </div>
 <div id="findings" class="section level3">
 <h3>Findings</h3>
-<ol style="list-style-type: decimal">
-<li>with increase in the resolution and increase in number of polygons - terra zonal performs better in sequential mode.</li>
-<li>many more to come</li>
-</ol>
+<p><strong>1. for coarse resolution raster, sequential method performs better</strong><br />
+<strong>2. with increase in resolution, parallelization seems to perform way better</strong><br />
+<strong>3. however, usage of 8 cores and 16 cores did not affect the result significantly - so it is better to process with 8 cores</strong></p>
 </div>
 </div>
 <div id="exact-extract" class="section level2">
-<h2>exact extract</h2>
+<h2><strong>exact extract</strong></h2>
 <p>Here we will visualize processing results in barchart - for all resolution rasters used in study</p>
 <div id="degree-resolution-4" class="section level4">
 <h4>0.1 degree resolution</h4>
@@ -1261,14 +1304,13 @@ Ohm-Np
 </div>
 <div id="findings-1" class="section level3">
 <h3>Findings</h3>
-<ol style="list-style-type: decimal">
-<li>with increase in the resolution and increase in number of polygons - terra zonal performs better in sequential mode.</li>
-<li>many more to come</li>
-</ol>
+<p><strong>1. for coarse resolution raster, sequential method performs better</strong><br />
+<strong>2. for higher resolution raster too, sequential method performs bettter</strong><br />
+<strong>3. the only case where parallelization (particularly 16 cores) slightly outperforms sequential method is - when the study area polygon is excessively large (~5000 or more sqkm) and rasters are of very high resolution</strong></p>
 </div>
 </div>
 <div id="terra-zonal" class="section level2">
-<h2>terra zonal</h2>
+<h2><strong>terra zonal</strong></h2>
 <p>Here we will visualize processing results in barchart - for all resolution rasters used in study</p>
 <div id="degree-resolution-8" class="section level4">
 <h4>0.1 degree resolution</h4>
@@ -1434,80 +1476,661 @@ Ohm-Np
 </div>
 <div id="findings-2" class="section level3">
 <h3>Findings</h3>
-<ol style="list-style-type: decimal">
-<li>with increase in the resolution and increase in number of polygons - terra zonal performs better in sequential mode.</li>
-<li>many more to come</li>
-<li>processing big rasters result in crash of the server</li>
-</ol>
+<p><strong>1. for coarse resolution rasters (~1 km) and increase in number of polygons - terra zonal performs better in sequential mode</strong><br />
+<strong>2. processing extremely big datasets result in poor performance sometimes leading to failure of R session - so it is not recommended to process very high resolution ratsers using terra zonal</strong></p>
 </div>
 </div>
-<div id="which-functions-to-choose" class="section level2">
-<h2>Which functions to choose?</h2>
-<div id="degree-resolution-10" class="section level3">
-<h3>0.1 degree resolution</h3>
+<div id="summarise" class="section level2">
+<h2>summarise</h2>
+<table>
+<colgroup>
+<col width="52%" />
+<col width="47%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>functions</th>
+<th>findings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>terra extract</td>
+<td>1. for coarse resolution raster, sequential method performs better </br> 2. with increase in resolution, parallelization seems to perform way better </br> 3. however, usage of 8 cores and 16 cores did not affect the result significantly - so it is better to process with 8 cores</td>
+</tr>
+<tr class="even">
+<td>exact extract</td>
+<td>1. for coarse resolution raster, sequential method performs better </br> 2. for higher resolution raster too, sequential method performs bettter </br> 3. the only case where parallelization (particularly 16 cores) slightly outperforms sequential method is - when the study area polygon is excessively large (~5000 or more sqkm) and rasters are of very high resolution</td>
+</tr>
+<tr class="odd">
+<td>terra zonal</td>
+<td>1. for coarse resolution rasters (~1 km) and increase in number of polygons - terra zonal performs better in sequential mode </br> 2. processing extremely big datasets result in poor performance sometimes leading to failure of R session - so it is not recommended to process very high resolution ratsers using terra zonal</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="most-suitable-combination" class="section level2">
+<h2><strong>most suitable combination?</strong></h2>
+<p>We only saw above how the three functions perform over the varying raster resolutions and varying study area polygons. So, now is the time to make recommendations for the ideal combination of functions and methods (sequential or parallelization). To carry out this analysis, all the results are aggregated and group by raster resolutions. Thus, for specific raster resolution, we could recommend what could be the most suitable combination.</p>
+<div id="degree-resolution-11.1-km" class="section level3">
+<h3>0.1 degree resolution (~11.1 km)</h3>
 <pre class="r"><code>resultf</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.1%20degree%20final%20plot-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.1-degree-final-plot-1">
+Past versions of “0.1 degree final plot-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.1-degree-final-plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.1 degree final plot-1.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>results</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.1%20degree%20final%20plot-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.1-degree-final-plot-2">
+Past versions of “0.1 degree final plot-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.1-degree-final-plot-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.1 degree final plot-2.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="the-best-combination" class="section level4">
 <h4>the best combination</h4>
-<ol style="list-style-type: decimal">
-<li>using terra zonal in sequential mode</li>
-</ol>
+<p><strong>1. terra zonal in sequential mode</strong></p>
 </div>
 </div>
-<div id="degree-resolution-11" class="section level3">
-<h3>0.01 degree resolution</h3>
+<div id="degree-resolution-1.11-km" class="section level3">
+<h3>0.01 degree resolution (~1.11 km)</h3>
 <pre class="r"><code>resultf</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.01%20degree%20final%20plot-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.01-degree-final-plot-1">
+Past versions of “0.01 degree final plot-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.01-degree-final-plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.01 degree final plot-1.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>results</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.01%20degree%20final%20plot-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.01-degree-final-plot-2">
+Past versions of “0.01 degree final plot-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.01-degree-final-plot-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.01 degree final plot-2.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Since, we couldn’t visualize properly the lower range of values, lets remove terra zonal 8 and 16 cores from the graph.</p>
 <pre class="r"><code>resultf_new</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.01%20degree%20new%20final%20plot-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.01-degree-new-final-plot-1">
+Past versions of “0.01 degree new final plot-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.01-degree-new-final-plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.01 degree new final plot-1.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>results_new</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.01%20degree%20new%20final%20plot-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.01-degree-new-final-plot-2">
+Past versions of “0.01 degree new final plot-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.01-degree-new-final-plot-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.01 degree new final plot-2.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="the-best-combination-1" class="section level4">
 <h4>the best combination</h4>
-<ol style="list-style-type: decimal">
-<li>using terra zonal in sequential mode</li>
-</ol>
+<p><strong>1. for large number of polygons and small areas upto ~100 sqkm, terra extract in parallelization mode (16 cores)</strong><br />
+<strong>2. for small number of polygons and large areas &gt;100 sqkm, terra zonal in sequential mode</strong></p>
 </div>
 </div>
-<div id="degree-resolution-12" class="section level3">
-<h3>0.001 degree resolution</h3>
+<div id="degree-resolution-111-m" class="section level3">
+<h3>0.001 degree resolution (~111 m)</h3>
 <pre class="r"><code>resultf</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.001%20degree%20final%20plot-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.001-degree-final-plot-1">
+Past versions of “0.001 degree final plot-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.001-degree-final-plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.001 degree final plot-1.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>results</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.001%20degree%20final%20plot-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.001-degree-final-plot-2">
+Past versions of “0.001 degree final plot-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.001-degree-final-plot-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.001 degree final plot-2.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Since, terra extract in sequential mode has very high values compared to other combination of functions and cores, we will not take it into consideration and visualize only the close values.</p>
 <pre class="r"><code>resultf_new</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.001%20degree%20new%20final%20plot-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.001-degree-new-final-plot-1">
+Past versions of “0.001 degree new final plot-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.001-degree-new-final-plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.001 degree new final plot-1.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>results_new</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.001%20degree%20new%20final%20plot-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.001-degree-new-final-plot-2">
+Past versions of “0.001 degree new final plot-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.001-degree-new-final-plot-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.001 degree new final plot-2.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="the-best-combination-2" class="section level4">
 <h4>the best combination</h4>
-<ol style="list-style-type: decimal">
-<li>using terra zonal in sequential mode</li>
-</ol>
+<p><strong>1. for large number of polygons and areas upto ~1000 sqkm, exact extract in sequential mode</strong><br />
+<strong>2. for extremely large areas &gt;1000 sqkm, exact extract in parallelization mode (16 cores), however the difference with sequential is not so significant (~1 secs)</strong></p>
 </div>
 </div>
-<div id="degree-resolution-13" class="section level3">
-<h3>0.0005 degree resolution</h3>
+<div id="degree-resolution-55.5-m" class="section level3">
+<h3>0.0005 degree resolution (~55.5 m)</h3>
 <pre class="r"><code>resultf</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.0005%20degree%20final%20plot-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.0005-degree-final-plot-1">
+Past versions of “0.0005 degree final plot-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.0005-degree-final-plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.0005 degree final plot-1.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>results</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.0005%20degree%20final%20plot-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.0005-degree-final-plot-2">
+Past versions of “0.0005 degree final plot-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.0005-degree-final-plot-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.0005 degree final plot-2.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Since, terra extract in sequential mode has very high values compared to other combination of functions and cores, we will not take it into consideration and visualize only the close values.</p>
 <pre class="r"><code>resultf_new</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.0005%20degree%20new%20final%20plot-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.0005-degree-new-final-plot-1">
+Past versions of “0.0005 degree new final plot-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.0005-degree-new-final-plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.0005 degree new final plot-1.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>results_new</code></pre>
 <p><img src="figure/raster_parallel.Rmd/0.0005%20degree%20new%20final%20plot-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-0.0005-degree-new-final-plot-2">
+Past versions of “0.0005 degree new final plot-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-0.0005-degree-new-final-plot-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/539ba1f27e0a6a2f56c2267b3daed263619eeb25/docs/figure/raster_parallel.Rmd/0.0005 degree new final plot-2.png" target="_blank">539ba1f</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="the-best-combination-3" class="section level4">
 <h4>the best combination</h4>
-<ol style="list-style-type: decimal">
-<li>using terra zonal in sequential mode</li>
-</ol>
+<p><strong>1. for large number of polygons and areas upto ~1000 sqkm, exact extract in sequential mode</strong><br />
+<strong>2. for extremely large areas &gt;1000 sqkm, exact extract in parallelization mode (16 cores)</strong></p>
+</div>
+</div>
+</div>
+<div id="summarise-1" class="section level2">
+<h2>summarise</h2>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="13%" />
+<col width="67%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Rasters</strong></th>
+<th><strong>size</strong></th>
+<th><strong>Combination of functions and methods</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.1 degree (~11.1 km)</td>
+<td>61.6 KB</td>
+<td>1. terra zonal in sequential mode</td>
+</tr>
+<tr class="even">
+<td>0.01 degree (~1.11 km)</td>
+<td>6 MB</td>
+<td>1. for large number of polygons and small areas upto ~100 sqkm, terra extract in parallelization mode (16 cores) </br> 2. for small number of polygons and large areas &gt;100 sqkm, terra zonal in sequential mode</td>
+</tr>
+<tr class="odd">
+<td>0.001 degree (~111 m)</td>
+<td>594.3 MB</td>
+<td>1. for large number of polygons and areas upto ~1000 sqkm, exact extract in sequential mode </br> 2. for extremely large areas &gt;1000 sqkm, exact extract in parallelization mode (16 cores), however the difference with sequential is not so significant (~1 secs)</td>
+</tr>
+<tr class="even">
+<td>0.0005 degree (~55.5 m)</td>
+<td>2.3 GB</td>
+<td>1. for large number of polygons and areas upto ~1000 sqkm, exact extract in sequential mode </br> 2. for extremely large areas &gt;1000 sqkm, exact extract in parallelization mode (16 cores)</td>
+</tr>
+</tbody>
+</table>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1558,8 +2181,6 @@ loaded via a namespace (and not attached):
 [65] knitr_1.34         fastmap_1.1.0      utf8_1.2.2         rprojroot_2.0.2   
 [69] KernSmooth_2.23-20 stringi_1.7.6      Rcpp_1.0.8.3       vctrs_0.4.0       
 [73] dbplyr_2.1.1       tidyselect_1.1.2   xfun_0.24         </code></pre>
-</div>
-</div>
 </div>
 </div>
 
