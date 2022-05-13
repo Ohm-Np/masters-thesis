@@ -1,0 +1,78 @@
+---
+title: 'sf vs terra: vector operations'
+author: "Om Prakash Bhandari"
+date: "4/22/2022"
+output: html_document
+---
+
+## Introduction 
+
+There are many ways to perform vector operations - here we are going to look at how the two polygon operation functions do behave on a sample of target and study area polygons:  
+1. sf  
+2. terra  
+
+## Plot 
+
+```{r terra, message=FALSE, warning=FALSE, include=FALSE}
+
+library(terra)
+t1 <- Sys.time()
+pa <- vect("../sample_wdpa.gpkg")
+eco <- vect("../sample_eco.gpkg")
+terra_ep <- terra::intersect(eco, pa)
+t2 <- Sys.time()
+dt_terra_eco_pa = as.numeric(t2-t1, units="secs")
+
+t1 <- Sys.time()
+pa <- vect("../sample_wdpa.gpkg")
+eco <- vect("../sample_eco.gpkg")
+terra_pe <- terra::intersect(pa, eco)
+t2 <- Sys.time()
+dt_terra_pa_eco = as.numeric(t2-t1, units="secs")
+```
+
+
+```{r sf, message=FALSE, warning=FALSE, include=FALSE}
+
+library(sf)
+t1 <- Sys.time()
+pa <- read_sf("../sample_wdpa.gpkg")
+eco <- read_sf("../sample_eco.gpkg")
+sf_pe <- st_intersection(pa, eco)
+t2 <- Sys.time()
+dt_sf_pa_eco = as.numeric(t2-t1, units="secs")
+
+t1 <- Sys.time()
+pa <- read_sf("../sample_wdpa.gpkg")
+eco <- read_sf("../sample_eco.gpkg")
+sf_ep <- st_intersection(eco, pa)
+t2 <- Sys.time()
+dt_sf_eco_pa = as.numeric(t2-t1, units="secs")
+```
+
+```{r df, message=FALSE, warning=FALSE, include=FALSE}
+
+df <- data.frame(Order = c("eco_pa", "pa_eco"),
+                 sf = c(dt_sf_eco_pa, dt_sf_pa_eco),
+                 terra = c(dt_terra_eco_pa, dt_terra_pa_eco))
+df.long <- tidyr::pivot_longer(df,
+                               cols = c("sf", "terra"))
+library(ggplot2)
+result.plot <- ggplot(data = df.long, aes(x=reorder(name, -value), y=value, fill=Order)) + 
+  geom_col(position = 'dodge') +
+  xlab('order of polygons') +
+  ylab('Time elapsed (s)') +
+  ggtitle('comparison of time taken to intersect polygons using terra and sf in different order')
+```
+
+The graph below shows us how the order of the polygons during intersection influence the processing time.
+
+```{r plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=10}
+
+result.plot
+```
+
+From the graph above, we saw that:  
+1. terra has the same processing time irrespective of the order of the polygons  
+2. however, there is significant difference between the elapsed time in sf  
+3. for sf, it is recommended to put polygon with multiple geometries first in the function `st_intersection(morePolygons, lessPolygons)`
