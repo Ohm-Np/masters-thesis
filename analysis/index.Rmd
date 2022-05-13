@@ -25,3 +25,5 @@ Chapters:
 ### Vector benchmarks
 
 - [polygon geospatial operations](vector_benchmarks.html)
+
+- [sf vs terra (polygon operations)](sf_vs_terra.html)
