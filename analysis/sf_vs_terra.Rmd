@@ -11,6 +11,56 @@ There are many ways to perform vector operations - here we are going to look at 
 1. sf  
 2. terra  
 
+```{r leafletdata, message=FALSE, warning=FALSE, include=FALSE}
+
+library("sf")
+library("terra")
+library("leaflet")
+library("exactextractr")
+library("tidyverse")
+library("tidyr")
+library("ggplot2")
+library("leaflet")
+library("leaflet.extras")
+library("leaflet.extras2")
+library("ggsci")
+library("scales")
+library("htmltools")
+library("RColorBrewer")
+library("plotly")
+library("rmarkdown")
+library("magrittr")
+
+pa <- read_sf("../sample_wdpa.gpkg")
+eco <- read_sf("../sample_eco.gpkg")
+
+pal <- colorNumeric(
+  palette = c("red","green","blue","yellow","grey","purple"),
+  domain = eco$ECO_ID)
+# visualize
+my_map <-
+  leaflet() %>%
+  addTiles(group = "OpenStreetMap") %>%
+  addProviderTiles(providers$CartoDB.Positron, group="CartoDB") %>%
+  addProviderTiles(providers$Esri.WorldImagery, group="Satellite") %>%
+  addPolygons(data = pa,opacity = 0.9,color = "orange", group = "WDPA polygons",label = ~htmlEscape(WDPAID),weight = 1)%>%
+  addPolygons(data = eco,opacity = 1,color = ~pal(ECO_ID), group = "TEOW polygons",label = ~htmlEscape(ECO_NAME),weight = 1)%>%
+  addFullscreenControl() %>%
+  addLayersControl(
+    baseGroups = c("CartoDB", "Satellite"),
+    overlayGroups = c("WDPA polygons","TEOW polygons"),
+    options = layersControlOptions(collapsed = FALSE))
+
+```
+
+Lets visualize the polygons and look at their properties. 
+
+```{r map, warning=FALSE, message=FALSE, include=TRUE}
+
+my_map
+```
+
+
 ## Plot 
 
 ```{r terra, message=FALSE, warning=FALSE, include=FALSE}
