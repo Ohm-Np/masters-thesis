@@ -2,7 +2,7 @@
 title: "benchmark - fishnets"
 author: "Om Prakash Bhandari"
 date: "31/03/2022"
-output: html_document
+output: workflowr::wflow_html
 ---
 
 #### Grid polygons - area of interest (aoi)

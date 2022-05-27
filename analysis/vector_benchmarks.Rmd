@@ -2,7 +2,7 @@
 title: "benchmark - vector operations"
 author: "Om Prakash Bhandari"
 date: "31/03/2022"
-output: html_document
+output: workflowr::wflow_html
 ---
 
 #### Polygons - area of interest (aoi)

@@ -2,7 +2,7 @@
 title: "sequential vs parallelization (fishnets)"
 author: "Om Prakash Bhandari"
 date: "4/13/2022"
-output: html_document
+output: workflowr::wflow_html
 ---
 
 ## Introduction

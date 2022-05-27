@@ -2,7 +2,7 @@
 title: "benchmark - raster operations"
 author: "Om Prakash Bhandari"
 date: "28/03/2022"
-output: html_document
+output: workflowr::wflow_html
 ---
 
 #### Polygons - area of interest (aoi)

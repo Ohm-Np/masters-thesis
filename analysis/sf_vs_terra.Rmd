@@ -2,7 +2,7 @@
 title: 'sf vs terra: vector operations'
 author: "Om Prakash Bhandari"
 date: "4/22/2022"
-output: html_document
+output: workflowr::wflow_html
 ---
 
 ## Introduction 
