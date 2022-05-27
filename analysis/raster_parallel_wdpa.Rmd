@@ -1,0 +1,211 @@
+---
+title: "sequential vs parallelization (wdpa polygons)"
+author: "Om Prakash Bhandari"
+date: "5/18/2022"
+output: workflowr::wflow_html
+---
+
+## Introduction
+
+```{r libraries, message=FALSE, warning=FALSE, include=FALSE}
+
+library("sf")
+library("terra")
+library("tidyr")
+library("ggplot2")
+library("tidyverse")
+library("leaflet")
+library("exactextractr")
+library("leaflet.extras")
+library("leaflet.extras2")
+library("ggsci")
+library("scales")
+library("htmltools")
+library("RColorBrewer")
+library("plotly")
+library("rmarkdown")
+library("magrittr")
+```
+
+In this study, we are going to check how the processing time will differ - (1) sequential approach (2) parallel approach while processing rasters with varying resolutions and for different study areas:
+
+1. wdpa polygons (167)
+2. simplified wdpa polygons (152)
+3. fishnet gridded cells (14338)
+
+Let's see how these three different aoi polygons look like:
+
+```{r leafletdata, message=FALSE, warning=FALSE, include=FALSE}
+
+# load WDPA polygon
+pa.sf <- read_sf("../sample_wdpa.gpkg")
+pa.sf <- st_transform(pa.sf, 4326)
+
+# load simplified WDPA polygon
+spa.sf <- read_sf("../sample_simp-wdpa.gpkg")
+spa.sf <- st_transform(spa.sf, 4326)
+
+# load fishnet polygons
+fishnet.sf <- read_sf("../sample_wdpa-fishnets.gpkg")
+fishnet.sf <- st_transform(fishnet.sf, 4326)
+
+# visualize
+my_map <-
+  leaflet() %>%
+  addTiles(group = "OpenStreetMap") %>%
+  addProviderTiles(providers$CartoDB.Positron, group="CartoDB") %>%
+  addProviderTiles(providers$Esri.WorldImagery, group="Satellite") %>%
+  addPolygons(data = pa.sf,opacity = 0.9,color = "orange", group = "WDPA polygons",label = ~htmlEscape(WDPAID),weight = 1)%>%
+  addPolygons(data = spa.sf,opacity = 1,color = "green", group = "Simplified WDPA polygons",label = ~htmlEscape(WDPAID),weight = 1)%>%
+  addPolygons(data = fishnet.sf,opacity = 1,color = "blue", group = "Fishnets",label = ~htmlEscape(poly_id),weight = 1)%>%
+  addFullscreenControl() %>%
+  addLayersControl(
+    baseGroups = c("CartoDB", "Satellite"),
+    overlayGroups = c("WDPA polygons","Simplified WDPA polygons","Fishnets"),
+    options = layersControlOptions(collapsed = FALSE))
+
+```
+
+```{r map, message=FALSE, warning=FALSE, include=TRUE}
+
+my_map
+```
+
+Four raster objects with varying resolutions were generated across the Bolivia region to carry out this study.
+The details of the rasters thus created follows:
+
+a) 0.1 degree (~11.1 km) = size 71.7 KB
+b) 0.01 degree (~1.11 km) = size 6.9 MB
+c) 0.001 degree (~111 m) = size 691.9 MB
+d) 0.0005 degree (~55.5 m) = size 2.7 GB
+
+
+## Results
+
+To carry out this analysis, all the results are aggregated and group by raster resolutions. Thus, for specific raster resolution, we could recommend what could be the most suitable combination.
+
+### 0.1 degree resolution (~11.1 km)
+
+```{r 0.1 degree final, message=FALSE, warning=FALSE, include=FALSE}
+
+final01 <- read.csv("data/results/rasters/bolivia/final_01.csv")
+long <- tidyr::pivot_longer(final01,
+                             cols = c("WDPA_167", "Simplified_WDPA_152", "Fishnets_14338"))
+
+result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.1 degree)")
+```
+
+```{r 0.1 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+result
+```
+
+
+### 0.01 degree resolution (~1.11 km)
+
+```{r 0.01 degree final, message=FALSE, warning=FALSE, include=FALSE}
+
+final001 <- read.csv("data/results/rasters/bolivia/final_001.csv")
+long <- tidyr::pivot_longer(final001,
+                             cols = c("WDPA_167", "Simplified_WDPA_152", "Fishnets_14338"))
+
+result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+
+# w/o terra zonal (4,8,16)
+f <- final001[-c(2,3,4), ]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("WDPA_167", "Simplified_WDPA_152", "Fishnets_14338"))
+
+result_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+```
+
+```{r 0.01 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+result
+```
+
+_terra zonal(4,8,16) have created much spikes over the graphs, so lets remove zonal and plot only terra extract and exact extract._
+
+```{r 0.01 degree final plot 2, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+result_new
+```
+
+
+### 0.001 degree resolution (~111 m)
+
+```{r 0.001 degree final, message=FALSE, warning=FALSE, include=FALSE}
+
+final0001 <- read.csv("data/results/rasters/bolivia/final_0001.csv")
+long <- tidyr::pivot_longer(final0001,
+                             cols = c("WDPA_167", "Simplified_WDPA_152", "Fishnets_14338"))
+
+result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.001 degree)")
+```
+
+```{r 0.001 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+result
+```
+
+
+### 0.0005 degree resolution (~55.5 m)
+
+```{r 0.0005 degree final, message=FALSE, warning=FALSE, include=FALSE}
+
+final00005 <- read.csv("data/results/rasters/bolivia/final_00005.csv")
+long <- tidyr::pivot_longer(final00005,
+                             cols = c("WDPA_167", "Simplified_WDPA_152", "Fishnets_14338"))
+
+result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+
+# w/o terra extract (1)
+f <- final00005[-1, ]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("WDPA_167", "Simplified_WDPA_152", "Fishnets_14338"))
+
+result_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+```
+
+```{r 0.0005 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+result
+```
+
+_terra extract(1) has created much spikes over the graphs, so lets remove that part and plot others._
+
+```{r 0.0005 degree final plot 2, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+result_new
+```
+
+
+## Conclusion
+
+|**Rasters**|**size**|**Combination of functions and methods**|
+|-----------|--------|----------------------------------------|
+|0.1 degree (~11.1 km) |71.7 KB|1. terra zonal in sequential mode|
+|0.01 degree (~1.11 km) |6.9 MB|1. terra zonal in sequential mode </br> 2. exact extract in sequential mode|
+|0.001 degree (~111 m)|691.9 MB|1. for wdpa polygons, exact extract with 16 cores </br> 2. for fishnets, exact extract sequential|
+|0.0005 degree (~55.5 m)|2.7 GB|1. for wdpa polygons, exact extract with 16 cores </br> 2. for fishnets, exact extract sequential|
+
+**terra zonal did not process very small polygons in many occasions, so if your study area contains very small areas, it is recommended not to opt terra zonal.**
+
