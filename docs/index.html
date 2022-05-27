@@ -294,7 +294,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-05-13
+<strong>Last updated:</strong> 2022-05-27
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -325,16 +325,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree8ca1798d78eaf75bafb02391e8128bf9f52bbb69targetblank8ca1798a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/Ohm-Np/masters-thesis/tree/8ca1798d78eaf75bafb02391e8128bf9f52bbb69" target="_blank">8ca1798</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree73984d7a09b122467a3d11f1c862b159a919dd51targetblank73984d7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/Ohm-Np/masters-thesis/tree/73984d7a09b122467a3d11f1c862b159a919dd51" target="_blank">73984d7</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree8ca1798d78eaf75bafb02391e8128bf9f52bbb69targetblank8ca1798a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree73984d7a09b122467a3d11f1c862b159a919dd51targetblank73984d7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/Ohm-Np/masters-thesis/tree/8ca1798d78eaf75bafb02391e8128bf9f52bbb69" target="_blank">8ca1798</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/Ohm-Np/masters-thesis/tree/73984d7a09b122467a3d11f1c862b159a919dd51" target="_blank">73984d7</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -342,10 +342,8 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .RData
+    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-
-Unstaged changes:
-    Modified:   analysis/sf_vs_terra.Rmd
 
 </code></pre>
 <p>
@@ -384,6 +382,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/73984d7a09b122467a3d11f1c862b159a919dd51/analysis/index.Rmd" target="_blank">73984d7</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-27
+</td>
+<td>
+wflow_publish(“analysis/index.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/Ohm-Np/masters-thesis/c1478daab9672318c03df1bf88b7f984661b3d9e/docs/index.html" target="_blank">c1478da</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-13
+</td>
+<td>
+add map
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -671,6 +703,7 @@ Start workflowr project.
 <li><p><a href="terra_exact_benchmarks.html">terraZonal vs terraExtract vs exactExtractr</a></p></li>
 <li><p><a href="fishnets_benchmarks.html">fishnets terra vs exact</a></p></li>
 <li><p><a href="raster_parallel.html">sequential vs parallelization (fishnets)</a></p></li>
+<li><p><a href="raster_parallel_wdpa.html">sequential vs parallelization (wdpaid)</a></p></li>
 </ul>
 </div>
 <div id="vector-benchmarks" class="section level3">
