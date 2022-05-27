@@ -22,6 +22,8 @@ Chapters:
 
 - [sequential vs parallelization (fishnets)](raster_parallel.html)
 
+- [sequential vs parallelization (wdpaid)](raster_parallel_wdpa.html)
+
 ### Vector benchmarks
 
 - [polygon geospatial operations](vector_benchmarks.html)
