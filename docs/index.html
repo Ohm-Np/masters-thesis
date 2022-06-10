@@ -276,7 +276,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -285,7 +285,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -294,10 +294,10 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-05-27
+<strong>Last updated:</strong> 2022-06-10
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>masters-thesis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -313,28 +313,28 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree73984d7a09b122467a3d11f1c862b159a919dd51targetblank73984d7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/Ohm-Np/masters-thesis/tree/73984d7a09b122467a3d11f1c862b159a919dd51" target="_blank">73984d7</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree62f90afb7ef32dc438362f6f3571c86e60a3c69btargetblank62f90afa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/Ohm-Np/masters-thesis/tree/62f90afb7ef32dc438362f6f3571c86e60a3c69b" target="_blank">62f90af</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree73984d7a09b122467a3d11f1c862b159a919dd51targetblank73984d7a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree62f90afb7ef32dc438362f6f3571c86e60a3c69btargetblank62f90afa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/Ohm-Np/masters-thesis/tree/73984d7a09b122467a3d11f1c862b159a919dd51" target="_blank">73984d7</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/Ohm-Np/masters-thesis/tree/62f90afb7ef32dc438362f6f3571c86e60a3c69b" target="_blank">62f90af</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -344,6 +344,88 @@ Ignored files:
     Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  analysis/01_zonal_vs_extract_vs_exactextractr_WDPA.Rmd
+    Untracked:  analysis/02_zonal_vs_extract_vs_exactextractr_Fishnets.Rmd
+    Untracked:  analysis/03_sequential_vs_parallelization_WDPA.Rmd
+    Untracked:  analysis/04_sequential_vs_parallelization_Fishnets.Rmd
+    Untracked:  analysis/05_sf_vs_terra.Rmd
+    Untracked:  code/01_terraZonal_vs_terraExtract_vs_exactExtractr_wdpa.R
+    Untracked:  code/02_terraZonal_vs_terraExtract_vs_exactExtractr_fishnets.R
+    Untracked:  code/03_seq_vs_par_wdpa.R
+    Untracked:  code/04_seq_vs_par_fishnets.R
+    Untracked:  code/05_vector_operations.R
+    Untracked:  code/mapme_biodiversity.R
+    Untracked:  data/fishnet_polygons/
+    Untracked:  data/results/01_zon_v_textr_v_extr.csv
+    Untracked:  data/results/02_fishnet_benchmarks/
+    Untracked:  data/results/03_seq_v_par_wdpa/
+    Untracked:  data/results/04_seq_v_par_fishnets/
+    Untracked:  data/results/05_sf_vs_terra.csv
+    Untracked:  esalandcover/
+
+Unstaged changes:
+    Deleted:    analysis/fishnets_benchmarks.Rmd
+    Modified:   analysis/index.Rmd
+    Deleted:    analysis/raster_parallel.Rmd
+    Deleted:    analysis/raster_parallel_wdpa.Rmd
+    Deleted:    analysis/sf_vs_terra.Rmd
+    Deleted:    analysis/terra_exact_benchmarks.Rmd
+    Deleted:    analysis/vector_benchmarks.Rmd
+    Deleted:    data/fishnet_10000_sqkm.gpkg
+    Deleted:    data/fishnet_1000_sqkm.gpkg
+    Deleted:    data/fishnet_100_sqkm.gpkg
+    Deleted:    data/fishnet_10_sqkm.gpkg
+    Deleted:    data/fishnet_200_sqkm.gpkg
+    Deleted:    data/fishnet_25_sqkm.gpkg
+    Deleted:    data/fishnet_5000_sqkm.gpkg
+    Deleted:    data/fishnet_500_sqkm.gpkg
+    Deleted:    data/fishnet_50_sqkm.gpkg
+    Deleted:    data/fishnet_5_sqkm.gpkg
+    Deleted:    data/results/fishnet_benchmarks/time10.csv
+    Deleted:    data/results/fishnet_benchmarks/time100.csv
+    Deleted:    data/results/fishnet_benchmarks/time1000.csv
+    Deleted:    data/results/fishnet_benchmarks/time10000.csv
+    Deleted:    data/results/fishnet_benchmarks/time200.csv
+    Deleted:    data/results/fishnet_benchmarks/time25.csv
+    Deleted:    data/results/fishnet_benchmarks/time5.csv
+    Deleted:    data/results/fishnet_benchmarks/time50.csv
+    Deleted:    data/results/fishnet_benchmarks/time500.csv
+    Deleted:    data/results/fishnet_benchmarks/time5000.csv
+    Deleted:    data/results/rasters/bolivia/ee_00005.csv
+    Deleted:    data/results/rasters/bolivia/ee_0001.csv
+    Deleted:    data/results/rasters/bolivia/ee_001.csv
+    Deleted:    data/results/rasters/bolivia/ee_01.csv
+    Deleted:    data/results/rasters/bolivia/final_00005.csv
+    Deleted:    data/results/rasters/bolivia/final_0001.csv
+    Deleted:    data/results/rasters/bolivia/final_001.csv
+    Deleted:    data/results/rasters/bolivia/final_01.csv
+    Deleted:    data/results/rasters/bolivia/te_00005.csv
+    Deleted:    data/results/rasters/bolivia/te_0001.csv
+    Deleted:    data/results/rasters/bolivia/te_001.csv
+    Deleted:    data/results/rasters/bolivia/te_01.csv
+    Deleted:    data/results/rasters/bolivia/tz_00005.csv
+    Deleted:    data/results/rasters/bolivia/tz_0001.csv
+    Deleted:    data/results/rasters/bolivia/tz_001.csv
+    Deleted:    data/results/rasters/bolivia/tz_01.csv
+    Deleted:    data/results/rasters/ee_00005.csv
+    Deleted:    data/results/rasters/ee_0001.csv
+    Deleted:    data/results/rasters/ee_001.csv
+    Deleted:    data/results/rasters/ee_01.csv
+    Deleted:    data/results/rasters/final_00005.csv
+    Deleted:    data/results/rasters/final_0001.csv
+    Deleted:    data/results/rasters/final_001.csv
+    Deleted:    data/results/rasters/final_001_wo_tz8-16.csv
+    Deleted:    data/results/rasters/final_01.csv
+    Deleted:    data/results/rasters/te_00005.csv
+    Deleted:    data/results/rasters/te_0001.csv
+    Deleted:    data/results/rasters/te_001.csv
+    Deleted:    data/results/rasters/te_01.csv
+    Deleted:    data/results/rasters/tz_00005.csv
+    Deleted:    data/results/rasters/tz_0001.csv
+    Deleted:    data/results/rasters/tz_001.csv
+    Deleted:    data/results/rasters/tz_01.csv
 
 </code></pre>
 <p>
@@ -382,6 +464,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/Ohm-Np/masters-thesis/12abe1bb57f3cac865a39ce538272acc8df38cb4/docs/index.html" target="_blank">12abe1b</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-05-27
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -696,22 +795,23 @@ Start workflowr project.
 </div>
 </div>
 <p>Cloud-based mass processing of structured global geo-datasets in R: A case study of the world database on protected areas and conservation related geo-variables.</p>
-<p>Chapters:</p>
+<div id="chapters" class="section level2">
+<h2>Chapters</h2>
 <div id="raster-benchmarks" class="section level3">
 <h3>Raster benchmarks</h3>
 <ul>
-<li><p><a href="terra_exact_benchmarks.html">terraZonal vs terraExtract vs exactExtractr</a></p></li>
-<li><p><a href="fishnets_benchmarks.html">fishnets terra vs exact</a></p></li>
-<li><p><a href="raster_parallel.html">sequential vs parallelization (fishnets)</a></p></li>
-<li><p><a href="raster_parallel_wdpa.html">sequential vs parallelization (wdpaid)</a></p></li>
+<li><p><a href="01_zonal_vs_extract_vs_exactextractr_WDPA.html">01 terraZonal vs terraExtract vs exactExtractr (WDPA)</a></p></li>
+<li><p><a href="02_zonal_vs_extract_vs_exactextractr_Fishnets.html">02 terraZonal vs terraExtract vs exactExtractr (Fishnets)</a></p></li>
+<li><p><a href="03_sequential_vs_parallelization_WDPA.html">03 sequential vs parallelization (WDPA)</a></p></li>
+<li><p><a href="04_sequential_vs_parallelization_Fishnets.html">04 sequential vs parallelization (Fishnets)</a></p></li>
 </ul>
 </div>
 <div id="vector-benchmarks" class="section level3">
 <h3>Vector benchmarks</h3>
 <ul>
-<li><p><a href="vector_benchmarks.html">polygon geospatial operations</a></p></li>
-<li><p><a href="sf_vs_terra.html">sf vs terra (polygon operations)</a></p></li>
+<li><a href="05_sf_vs_terra.html">05 sf vs terra (polygon operations)</a></li>
 </ul>
+</div>
 </div>
 
 

@@ -1,0 +1,220 @@
+---
+title: "terraZonal vs terraExtract vs exactExtractr (Fishnets)"
+author: "Om Prakash Bhandari"
+date: "31/03/2022"
+output: workflowr::wflow_html
+---
+
+## Introduction
+
+There are several ways and techniques to process raster datasets - using different packages or the functionalities provided by those packages. Depending on the package and their functions, the time taken to process the rasters also varies accordingly. So, this study will focus on three important functions which are used widely to process rasters for three different types of polygons.
+
+1. terra::zonal
+2. terra::extract
+3. exactextractr::exact_extract 
+
+### Grid polygons - area of interest (aoi) (part I)
+
+1. 5 sqkm grids (255020)
+2. 10 sqkm grids (127600)
+3. 25 sqkm grids (51336)
+4. 50 sqkm grids (25839)
+5. 100 sqkm grids (12950)
+
+Let's see how these three different aoi polygons look like:
+
+```{r leafletdata, message=FALSE, warning=FALSE, include=FALSE}
+
+library("sf")
+library("terra")
+library("leaflet")
+library("exactextractr")
+library("tidyverse")
+library("tidyr")
+library("ggplot2")
+library("leaflet")
+library("leaflet.extras")
+library("leaflet.extras2")
+library("ggsci")
+library("scales")
+library("htmltools")
+library("RColorBrewer")
+library("plotly")
+library("rmarkdown")
+library("magrittr")
+
+pa.sf <- read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_spatial_latinamerica_2021-04-22_allPAs_valid.gpkg")
+
+pa_map <- pa.sf %>%
+  dplyr::filter(WDPAID %in% 31)
+
+# spatial filter, as wkt:
+wkt <- st_as_text(st_geometry(pa_map))
+# filter by (bbox overlaps of) first feature geometry:
+t5 <- read_sf("data/fishnet_polygons/fishnet_5_sqkm.gpkg", wkt_filter = wkt)
+t10 <- read_sf("data/fishnet_polygons/fishnet_10_sqkm.gpkg", wkt_filter = wkt)
+t25 <- read_sf("data/fishnet_polygons/fishnet_25_sqkm.gpkg", wkt_filter = wkt)
+t50 <- read_sf("data/fishnet_polygons/fishnet_50_sqkm.gpkg", wkt_filter = wkt)
+t100 <- read_sf("data/fishnet_polygons/fishnet_100_sqkm.gpkg", wkt_filter = wkt)
+
+
+# visualize
+my_map <-
+  leaflet() %>%
+  addTiles(group = "OpenStreetMap") %>%
+  addProviderTiles(providers$CartoDB.Positron, group="CartoDB") %>%
+  addProviderTiles(providers$Esri.WorldImagery, group="Satellite") %>%
+  addPolygons(data = t5,opacity = 0.9,color = "orange", group = "fishnet_5",weight = 1)%>%
+  addPolygons(data = t10,opacity = 1,color = "green", group = "fishnet_10",weight = 1)%>%
+  addPolygons(data = t25,opacity = 1,color = "blue", group = "fishnet_25",weight = 1)%>%
+  addPolygons(data = t50,opacity = 1,color = "red", group = "fishnet_50",weight = 1)%>%
+  addPolygons(data = t100,opacity = 1,color = "#80e5e5", group = "fishnet_100",weight = 1)%>%
+  addFullscreenControl() %>%
+  addLayersControl(
+    baseGroups = c("CartoDB", "Satellite"),
+    overlayGroups = c("fishnet_5","fishnet_10", "fishnet_25", "fishnet_50", "fishnet_100"),
+    options = layersControlOptions(collapsed = FALSE))
+
+```
+
+```{r map, message=FALSE, warning=FALSE, include=TRUE}
+
+my_map
+```
+
+### Raster properties
+
+The raster used in this study is worldpop global population raster from year 2020. 
+
+Lets see the properties of raster:
+
+```{r rasload, message=FALSE, warning=FALSE, include=FALSE}
+
+population_raster <- rast("../../datalake/mapme.protectedareas/input/world_pop/global_mosaic2020.tif")
+```
+
+```{r ras, message=FALSE, warning=FALSE, include=TRUE}
+
+population_raster
+```
+
+### Processing time to compute raster statistics (part I)
+
+```{r preparedata, message=FALSE, warning=FALSE, include=FALSE}
+
+t5 <- read.csv("data/results/02_fishnet_benchmarks/time5.csv")
+t10 <- read.csv("data/results/02_fishnet_benchmarks/time10.csv")
+t25 <- read.csv("data/results/02_fishnet_benchmarks/time25.csv")
+t50 <- read.csv("data/results/02_fishnet_benchmarks/time50.csv")
+t100 <- read.csv("data/results/02_fishnet_benchmarks/time100.csv")
+
+df.result <- data.frame(
+  Functions = c("terra_extract", "terra_zonal", "exact_extract"),
+  grids_255020 = c(t5[2][[1]], t5[3][[1]], t5[4][[1]]),
+  grids_127600 = c(t10[2][[1]], t10[3][[1]], t10[4][[1]]),
+  grids_51336 = c(t25[2][[1]], t25[3][[1]], t25[4][[1]]),
+  grids_25839 = c(t50[2][[1]], t50[3][[1]], t50[4][[1]]),
+  grids_12950 = c(t100[2][[1]], t100[3][[1]], t100[4][[1]])
+)
+
+df.result.long <- tidyr::pivot_longer(df.result,
+  cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950")
+)
+
+library(ggplot2)
+result.plot <- ggplot(data = df.result.long, aes(x = reorder(name, -value), y = value, fill = Functions)) +
+  geom_col(position = "dodge") +
+  xlab("Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("comparison of time taken by three different functions to compute raster statistics")
+```
+
+
+```{r plot, message=FALSE, warning=FALSE, include=TRUE, fig.width = 12}
+
+result.plot
+```
+
+
+Similarly, lets see how the functions behave when the area of each polygon gets bigger.
+
+### Grid polygons - area of interest (aoi)
+
+1. 200 sqkm grids (6600)
+2. 500 sqkm grids (2688)
+3. 1000 sqkm grids (1350)
+4. 5000 sqkm grids (294)
+5. 10000 sqkm grids (157)
+
+Let's see how these three different aoi polygons look like:
+
+```{r leafletdata2, message=FALSE, warning=FALSE, include=FALSE}
+
+# filter by (bbox overlaps of) first feature geometry:
+t200 <- read_sf("data/fishnet_polygons/fishnet_200_sqkm.gpkg", wkt_filter = wkt)
+t500 <- read_sf("data/fishnet_polygons/fishnet_500_sqkm.gpkg", wkt_filter = wkt)
+t1000 <- read_sf("data/fishnet_polygons/fishnet_1000_sqkm.gpkg", wkt_filter = wkt)
+t5000 <- read_sf("data/fishnet_polygons/fishnet_5000_sqkm.gpkg", wkt_filter = wkt)
+t10000 <- read_sf("data/fishnet_polygons/fishnet_10000_sqkm.gpkg", wkt_filter = wkt)
+
+
+# visualize
+my_map2 <-
+  leaflet() %>%
+  addTiles(group = "OpenStreetMap") %>%
+  addProviderTiles(providers$CartoDB.Positron, group="CartoDB") %>%
+  addProviderTiles(providers$Esri.WorldImagery, group="Satellite") %>%
+  addPolygons(data = t200,opacity = 0.9,color = "orange", group = "fishnet_200",weight = 1)%>%
+  addPolygons(data = t500,opacity = 1,color = "green", group = "fishnet_500",weight = 1)%>%
+  addPolygons(data = t1000,opacity = 1,color = "blue", group = "fishnet_1000",weight = 1)%>%
+  addPolygons(data = t5000,opacity = 1,color = "red", group = "fishnet_5000",weight = 1)%>%
+  addPolygons(data = t10000,opacity = 1,color = "#80e5e5", group = "fishnet_10000",weight = 1)%>%
+  addFullscreenControl() %>%
+  addLayersControl(
+    baseGroups = c("CartoDB", "Satellite"),
+    overlayGroups = c("fishnet_200","fishnet_500", "fishnet_1000", "fishnet_5000", "fishnet_10000"),
+    options = layersControlOptions(collapsed = FALSE))
+
+```
+
+```{r map2, message=FALSE, warning=FALSE, include=TRUE}
+
+my_map2
+```
+
+### Processing time to compute raster statistics (part II)
+
+```{r preparedata2, message=FALSE, warning=FALSE, include=FALSE}
+
+t200 <- read.csv("data/results/02_fishnet_benchmarks/time200.csv")
+t500 <- read.csv("data/results/02_fishnet_benchmarks/time500.csv")
+t1000 <- read.csv("data/results/02_fishnet_benchmarks/time1000.csv")
+t5000 <- read.csv("data/results/02_fishnet_benchmarks/time5000.csv")
+t10000 <- read.csv("data/results/02_fishnet_benchmarks/time10000.csv")
+
+df.result2 <- data.frame(
+  Functions = c("terra_extract", "terra_zonal", "exact_extract"),
+  grids_6600 = c(t200[2][[1]], t200[3][[1]], t200[4][[1]]),
+  grids_2688 = c(t500[2][[1]], t500[3][[1]], t500[4][[1]]),
+  grids_1350 = c(t1000[2][[1]], t1000[3][[1]], t1000[4][[1]]),
+  grids_294 = c(t5000[2][[1]], t5000[3][[1]], t5000[4][[1]]),
+  grids_157 = c(t10000[2][[1]], t10000[3][[1]], t10000[4][[1]])
+)
+
+df.result.long2 <- tidyr::pivot_longer(df.result2,
+  cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157")
+)
+
+library(ggplot2)
+result.plot2 <- ggplot(data = df.result.long2, aes(x = reorder(name, -value), y = value, fill = Functions)) +
+  geom_col(position = "dodge") +
+  xlab("Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("comparison of time taken by three different functions to compute raster statistics")
+```
+
+
+```{r plot2, message=FALSE, warning=FALSE, include=TRUE, fig.width = 12}
+
+result.plot2
+```

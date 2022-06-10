@@ -1,0 +1,119 @@
+---
+title: "terraZonal vs terraExtract vs exactExtractr (WDPA)"
+author: "Om Prakash Bhandari"
+date: "28/03/2022"
+output: workflowr::wflow_html
+---
+
+## Introduction
+
+There are several ways and techniques to process raster datasets - using different packages or the functionalities provided by those packages. Depending on the package and their functions, the time taken to process the rasters also varies accordingly. So, this study will focus on three important functions which are used widely to process rasters for three different types of polygons.
+
+1. terra::zonal
+2. terra::extract
+3. exactextractr::exact_extract 
+
+### Polygons - area of interest (aoi)
+
+1. wdpa polygons (7495)
+2. simplified wdpa polygons (4722)
+3. fishnet gridded cells (216425)
+
+Let's see how these three different aoi polygons look like:
+
+```{r leafletdata, message=FALSE, warning=FALSE, include=FALSE}
+
+library("sf")
+library("terra")
+library("leaflet")
+library("exactextractr")
+library("tidyverse")
+library("tidyr")
+library("ggplot2")
+library("leaflet")
+library("leaflet.extras")
+library("leaflet.extras2")
+library("ggsci")
+library("scales")
+library("htmltools")
+library("RColorBrewer")
+library("plotly")
+library("rmarkdown")
+library("magrittr")
+
+# load WDPA polygon
+pa.sf <- read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_spatial_latinamerica_2021-04-22_allPAs_valid.gpkg")
+
+# load simplified WDPA polygon
+spa.sf <- read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_spatial_latinamerica_2021-04-22_allPAs_valid_simplified.gpkg")
+
+# load fishnet polygons
+fishnet.sf <- read_sf("../../datalake/mapme.protectedareas/processing/fishnet/honeycomb_5_sqkm_kfw.gpkg")
+fishnet.sf <- st_transform(fishnet.sf, 4326)
+
+
+# subset data for only map
+pa_map <- pa.sf %>%
+  dplyr::filter(ISO3 %in% "DOM")
+spa_map <- spa.sf %>%
+  dplyr::filter(ISO3 %in% "DOM")
+fish_map <- st_crop(fishnet.sf, pa_map)
+# visualize
+my_map <-
+  leaflet() %>%
+  addTiles(group = "OpenStreetMap") %>%
+  addProviderTiles(providers$CartoDB.Positron, group="CartoDB") %>%
+  addProviderTiles(providers$Esri.WorldImagery, group="Satellite") %>%
+  addPolygons(data = pa_map,opacity = 0.9,color = "orange", group = "WDPA polygons",label = ~htmlEscape(WDPAID),weight = 1)%>%
+  addPolygons(data = spa_map,opacity = 1,color = "green", group = "Simplified WDPA polygons",label = ~htmlEscape(WDPAID),weight = 1)%>%
+  addPolygons(data = fish_map,opacity = 1,color = "blue", group = "Fishnets",label = ~htmlEscape(poly_id),weight = 1)%>%
+  addFullscreenControl() %>%
+  addLayersControl(
+    baseGroups = c("CartoDB", "Satellite"),
+    overlayGroups = c("WDPA polygons","Simplified WDPA polygons","Fishnets"),
+    options = layersControlOptions(collapsed = FALSE))
+
+```
+
+```{r map, message=FALSE, warning=FALSE, include=TRUE}
+
+my_map
+```
+
+### Raster properties
+
+The raster used in this study is worldpop global population raster from year 2020. 
+
+Lets see the properties of raster:
+
+```{r rasload, message=FALSE, warning=FALSE, include=FALSE}
+
+population_raster <- rast("../../datalake/mapme.protectedareas/input/world_pop/global_mosaic2020.tif")
+```
+
+```{r ras, message=FALSE, warning=FALSE, include=TRUE}
+
+population_raster
+```
+
+
+### Processing time to compute raster statistics
+
+After pocessing the population raster layer for three different study areas using three above-mentioned functions, we got the following result (here in the graphical form) considering the elapsed time.
+
+```{r plot, message=FALSE, warning=FALSE, include=FALSE}
+
+df.result <- read.csv("data/results/01_zon_v_textr_v_extr.csv")
+df.result.long <- pivot_longer(df.result,
+                               cols = c("WDPA_7495", "Simplified_WDPA_4722", "Fishnet_216425"))
+result.plot <- ggplot(data = df.result.long, aes(x=name, y=value, fill=Functions)) + 
+  geom_col(position = 'dodge') +
+  xlab('Type of Polygons') +
+  ylab('Time elapsed (s)') +
+  ggtitle('comparison of time taken by three different functions to compute raster statistics')
+```
+
+```{r plot2, message=FALSE, warning=FALSE, include = TRUE, fig.width = 12}
+
+result.plot
+```
