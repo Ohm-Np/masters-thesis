@@ -8,7 +8,7 @@ library(terra)
 library(exactextractr)
 
 # load raster
-pop <- rast("../../datalake/mapme.protectedareas/input/world_pop/global_mosaic2020.tif")
+raster <- rast("../../datalake/mapme.protectedareas/input/world_pop/global_mosaic2020.tif")
 
 ## (A): terraZonal --------------------------------------
 

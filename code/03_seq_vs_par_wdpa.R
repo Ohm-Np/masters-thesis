@@ -12,7 +12,7 @@ library(pbmcapply)
 
 ## (A) terra zonal ----------------------------------------------------
 
-r <- rast("../test/rasters/bolivia/rast_0-1.tif")
+r <- rast("../test/rasters/bolivia/rast_0-01.tif")
 
 # function only for pa polygons
 pronow <- function(p, r, n) {
@@ -63,7 +63,7 @@ for (n in c(4,8,16)) {
 
 ## (B) terra extract --------------------------------------------------
 
-r <- rast("../test/rasters/bolivia/rast_0-1.tif")
+r <- rast("../test/rasters/bolivia/rast_0-0005.tif")
 
 # function only for pa polygons
 pronow <- function(p, r, n) {
@@ -116,7 +116,7 @@ r <- rast("../test/rasters/bolivia/rast_0-1.tif")
 pronow <- function(p, r, n) {
   t1 <- Sys.time()
   df <- pbmclapply(1:nrow(p), function(i) {
-    exact_extract(r, p[i, ], 'mean', na.rm = T)
+    exact_extract(r, p[i, ], 'mean')
   },mc.cores = n)
   t2 <- Sys.time()
   dt <- as.numeric(t2-t1, units="secs")
