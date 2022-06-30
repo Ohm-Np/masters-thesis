@@ -94,12 +94,25 @@ result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = C
   xlab("Type of Polygons") +
   ylab("Time elapsed (s)") +
   ggtitle("time taken by three different functions and cores to compute raster statistics (0.1 degree)")
+
+# w/o sequential
+f <- final01[ ,-4]
+longf <- tidyr::pivot_longer(f,
+                             cols = c("WDPA_167", "Simplified_WDPA_152"))
+result_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
+  geom_col(position = "dodge") +
+  xlab("Type of Polygons") +
+  ylab("Time elapsed (s)") +
+  ggtitle("time taken by three different functions and cores to compute raster statistics (0.1 degree)")
 ```
 
 ```{r 0.1 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
 result
 ```
 
+```{r 0.1 degree final plot 2, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+result_new
+```
 
 ### 0.01 degree resolution (~1.11 km)
 
@@ -116,9 +129,9 @@ result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = C
   ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
 
 # w/o terra zonal (4,8,16)
-f <- final001[-c(2,3,4), ]
+f <- final001[ ,-4]
 longf <- tidyr::pivot_longer(f,
-                             cols = c("WDPA_167", "Simplified_WDPA_152", "Fishnets_14338"))
+                             cols = c("WDPA_167", "Simplified_WDPA_152"))
 
 result_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
@@ -171,28 +184,12 @@ result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = C
   xlab("Type of Polygons") +
   ylab("Time elapsed (s)") +
   ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
-
-# w/o terra extract (1)
-f <- final00005[-1, ]
-longf <- tidyr::pivot_longer(f,
-                             cols = c("WDPA_167", "Simplified_WDPA_152", "Fishnets_14338"))
-
-result_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
-  geom_col(position = "dodge") +
-  xlab("Type of Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
 ```
 
 ```{r 0.0005 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
 result
 ```
 
-_terra extract(1) has created much spikes over the graphs, so lets remove that part and plot others._
-
-```{r 0.0005 degree final plot 2, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
-result_new
-```
 
 
 ## Conclusion
