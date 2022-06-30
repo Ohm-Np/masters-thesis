@@ -196,10 +196,10 @@ result
 
 |**Rasters**|**size**|**Combination of functions and methods**|
 |-----------|--------|----------------------------------------|
-|0.1 degree (~11.1 km) |71.7 KB|1. terra zonal in sequential mode|
-|0.01 degree (~1.11 km) |6.9 MB|1. terra zonal in sequential mode </br> 2. exact extract in sequential mode|
-|0.001 degree (~111 m)|691.9 MB|1. for wdpa polygons, exact extract with 16 cores </br> 2. for fishnets, exact extract sequential|
-|0.0005 degree (~55.5 m)|2.7 GB|1. for wdpa polygons, exact extract with 16 cores </br> 2. for fishnets, exact extract sequential|
+|0.1 degree (~11.1 km) |71.7 KB|1. terra zonal in single asset mode|
+|0.01 degree (~1.11 km) |6.9 MB|1. terra zonal in single asset mode </br> 2. exact extract in single asset mode|
+|0.001 degree (~111 m)|691.9 MB|1. for wdpa polygons, exact extract with 16 cores </br> 2. for fishnets, exact extract single asset|
+|0.0005 degree (~55.5 m)|2.7 GB|1. for wdpa polygons, exact extract with 16 cores </br> 2. for fishnets, exact extract single asset|
 
 **terra zonal did not process very small polygons in many occasions, so if your study area contains very small areas, it is recommended not to opt terra zonal.**
 
