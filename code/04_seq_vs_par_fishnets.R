@@ -35,8 +35,15 @@ progrid <- function(i, r, n) {
 }
 
 # test run
-progrid(i=10000, r=r, n=4)
+for (j in c(100,50,25,10)) {
 
+  progrid(i = j, r = r, n = 1)
+}
+
+# ,1000,
+progrid(i=200, r=r, n=1)
+
+# wt
 
 ## (B) terra extract ----------------------------------------------------------
 
@@ -54,11 +61,17 @@ progrid <- function(i, r, n) {
   },mc.cores = n)
   t2 <- Sys.time()
   dt <- as.numeric(t2-t1, units="secs")
+  write.csv(dt, paste0("../test/thesis/archives_CSVs/new_",i,".csv"), row.names = F)
   print(dt)
 }
 
+for (j in c(5000,1000,500,200,100,50,25,10,5)) {
+
+  progrid(i = j, r = r, n = 1)
+}
+
 # test run
-progrid(i=10000, r=r, n=4)
+progrid(i=10000, r=r, n=1)
 
 
 ## (C) exact extract ----------------------------------------------------------
