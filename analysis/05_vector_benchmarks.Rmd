@@ -1,0 +1,42 @@
+---
+title: 'vector operations: mapme.biodiversity functions'
+author: "Om Prakash Bhandari"
+date: "07/06/2022"
+output: workflowr::wflow_html
+---
+
+## Introduction 
+
+The study that we are going to carry out here uses functions from `mapme.biodiversity` to process polygon data. 
+
+Dataset: Mangrove Extent (2016)
+Source: Global Mangrove Watch (GMW)
+AOIs: WDPA polygons, simplified WDPA polygons and Fishnet polygons
+
+
+## Plot 
+
+```{r df, message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+df <- read.csv("data/results/mapme_biodiversity/mangrove_1-16.csv")
+df.long <- tidyr::pivot_longer(df,
+                               cols = c("WDPA_7495", "Simplified_WDPA_4722", "Fishnet_216425"))
+# rename column name
+df.long <- df.long %>%
+  rename(Resource = name)
+library(ggplot2)
+result <- ggplot(df.long, aes(Cores, value)) +
+  geom_line(aes(colour = Resource))+
+  ylab("Time elapsed (s)")+
+  xlab("Sequential approach (1) - Parallel approach (2-16)")+
+  geom_point(colour = "red", size = 0.5)+
+  ggtitle("Sequential & Parallel processing - WDPA polygons")
+```
+
+The graph below shows us how the order of the polygons during intersection influence the processing time.
+
+```{r plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=10}
+
+result
+```
+
