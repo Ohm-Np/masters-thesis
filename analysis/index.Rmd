@@ -26,4 +26,4 @@ geo-variables.
 
 ### Vector benchmarks
 
-- [05 sf vs terra (polygon operations)](05_sf_vs_terra.html)
+- [05 vector benchmarks (mapme.biodiversity)](05_vector_benchmarks.html)
