@@ -14,7 +14,7 @@ geo-variables.
 
 ## Chapters
 
-### Raster benchmarks
+### Raster benchmarks (core functions)
 
 - [01 terraZonal vs terraExtract vs exactExtractr  (WDPA)](01_zonal_vs_extract_vs_exactextractr_WDPA.html)
 
@@ -24,6 +24,8 @@ geo-variables.
 
 - [04 sequential vs parallelization (Fishnets)](04_sequential_vs_parallelization_Fishnets.html)
 
-### Vector benchmarks
+### Package mapme.biodiversity functions
 
 - [05 vector benchmarks (mapme.biodiversity)](05_vector_benchmarks.html)
+
+- [06 raster benchmarks (mapme.biodiversity)](06_raster_benchmarks.html)
