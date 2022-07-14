@@ -40,3 +40,46 @@ The graph below shows us how the order of the polygons during intersection influ
 result
 ```
 
+### Factor plot (WDPA)
+
+We already saw how using the different number of cores affect the processing time and it follows more or less exponential pattern. Now, we want to see the plot showing factor by which the processing time increases with increase in the number of cores.
+
+```{r fct, message=FALSE, warning=FALSE, include=FALSE}
+
+library(dplyr)
+orig.data <-
+  read.csv("data/results/mapme_biodiversity/mangrove_1-16.csv")
+# change the df to the factor numbers
+dftofct <- function(n) {
+
+  fct <- orig.data[[3]][1]/orig.data[[3]][n]
+  newdf <- data.frame(Cores = n,
+                      obtained = fct,
+                      expected = n)
+}
+listed <- lapply(1:16, dftofct)
+final <- do.call(rbind, listed)
+
+# create line plot from the final data
+long <- tidyr::pivot_longer(final,
+                            cols = c("expected", "obtained"))
+# rename name to Factor
+long <- long %>%
+  rename(Factor = name)
+
+fct_plot <- ggplot(long, aes(x = Cores, y = value, group = Factor)) +
+  geom_line(aes(linetype = Factor, color = Factor)) +
+  geom_point(colour = "red", size = 0.5) +
+  scale_linetype_manual(values = c("dotted", "solid")) +
+  ggtitle("factor by which the processing time increases with the increase in the number of cores - terra zonal") +
+  ylab("Factor") +
+  xlab("Number of cores") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 16.5))
+```
+
+
+```{r fctplot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+
+fct_plot
+```
