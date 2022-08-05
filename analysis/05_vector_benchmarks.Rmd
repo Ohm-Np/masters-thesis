@@ -71,7 +71,7 @@ fct_plot <- ggplot(long, aes(x = Cores, y = value, group = Factor)) +
   geom_line(aes(linetype = Factor, color = Factor)) +
   geom_point(colour = "red", size = 0.5) +
   scale_linetype_manual(values = c("dotted", "solid")) +
-  ggtitle("factor by which the processing time increases with the increase in the number of cores - terra zonal") +
+  ggtitle("Absolute factor plot - WDPA polygons") +
   ylab("Factor") +
   xlab("Number of cores") +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
