@@ -12,7 +12,7 @@ library(pbmcapply)
 
 ## (A) terra zonal ----------------------------------------------------
 
-r <- rast("../test/rasters/bolivia/rast_0-01.tif")
+r <- rast("../test/rasters/bolivia/rast_0-1.tif")
 
 # function only for pa polygons
 pronow <- function(p, r, n) {

@@ -16,7 +16,7 @@ There are several ways and techniques to process raster datasets - using differe
 ### Polygons - area of interest (aoi)
 
 1. wdpa polygons (7495)
-2. simplified wdpa polygons (4722)
+2. simplified wdpa polygons (7495)
 3. fishnet gridded cells (216425)
 
 Let's see how these three different aoi polygons look like:
@@ -45,7 +45,7 @@ library("magrittr")
 pa.sf <- read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_spatial_latinamerica_2021-04-22_allPAs_valid.gpkg")
 
 # load simplified WDPA polygon
-spa.sf <- read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_spatial_latinamerica_2021-04-22_allPAs_valid_simplified.gpkg")
+spa.sf <- read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_allPAs_valid_simplified.gpkg")
 
 # load fishnet polygons
 fishnet.sf <- read_sf("../../datalake/mapme.protectedareas/processing/fishnet/honeycomb_5_sqkm_kfw.gpkg")
@@ -105,7 +105,7 @@ After pocessing the population raster layer for three different study areas usin
 
 df.result <- read.csv("data/results/01_zon_v_textr_v_extr.csv")
 df.result.long <- pivot_longer(df.result,
-                               cols = c("WDPA_7495", "Simplified_WDPA_4722", "Fishnet_216425"))
+                               cols = c("WDPA_7495", "Simplified_WDPA_7495", "Fishnet_216425"))
 result.plot <- ggplot(data = df.result.long, aes(x=name, y=value, fill=Functions)) + 
   geom_col(position = 'dodge') +
   xlab('Type of Polygons') +

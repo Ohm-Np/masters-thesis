@@ -26,7 +26,7 @@ dt_tz <- as.numeric(t2-t1, units = "secs")
 
 # load simplified WDPA polygons
 spa.sf <-
-  read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_spatial_latinamerica_2021-04-22_allPAs_valid_simplified.gpkg")
+  read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_allPAs_valid_simplified.gpkg")
 pop_crop <- terra::crop(raster, spa.sf)
 t1 <- Sys.time()
 spa.v <- vect(spa.sf)
@@ -64,7 +64,7 @@ dt_te <- as.numeric(t2-t1, units = "secs")
 
 # load simplified WDPA polygons
 spa.sf <-
-  read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_spatial_latinamerica_2021-04-22_allPAs_valid_simplified.gpkg")
+  read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_allPAs_valid_simplified.gpkg")
 pop_crop <- terra::crop(raster, spa.sf)
 t1 <- Sys.time()
 spa.v <- vect(spa.sf)
@@ -97,7 +97,7 @@ dtfs_ee <- as.numeric(t2-t1, units = "secs")
 
 # load simplified WDPA polygons
 spa.sf <-
-  read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_spatial_latinamerica_2021-04-22_allPAs_valid_simplified.gpkg")
+  read_sf("../../datalake/mapme.protectedareas/input/wdpa_kfw/wdpa_kfw_allPAs_valid_simplified.gpkg")
 pop_crop <- terra::crop(raster, spa.sf)
 t1 <- Sys.time()
 exact_extract <- exact_extract(pop_crop,spa.sf,"mean")

@@ -91,6 +91,8 @@ long <- tidyr::pivot_longer(final01,
 
 result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
+                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4", "chartreuse", "chartreuse1", "chartreuse2", "chartreuse3", "chartreuse4")) +
   xlab("Type of Polygons") +
   ylab("Time elapsed (s)") +
   ggtitle("time taken by three different functions and cores to compute raster statistics (0.1 degree)")
@@ -101,6 +103,8 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("WDPA_167", "Simplified_WDPA_152"))
 result_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
+                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4", "chartreuse", "chartreuse1", "chartreuse2", "chartreuse3", "chartreuse4")) +
   xlab("Type of Polygons") +
   ylab("Time elapsed (s)") +
   ggtitle("time taken by three different functions and cores to compute raster statistics (0.1 degree)")
@@ -124,6 +128,8 @@ long <- tidyr::pivot_longer(final001,
 
 result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
+                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4", "chartreuse", "chartreuse1", "chartreuse2", "chartreuse3", "chartreuse4")) +
   xlab("Type of Polygons") +
   ylab("Time elapsed (s)") +
   ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
@@ -135,6 +141,8 @@ longf <- tidyr::pivot_longer(f,
 
 result_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
+                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4", "chartreuse", "chartreuse1", "chartreuse2", "chartreuse3", "chartreuse4")) +
   xlab("Type of Polygons") +
   ylab("Time elapsed (s)") +
   ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
@@ -161,6 +169,8 @@ long <- tidyr::pivot_longer(final0001,
 
 result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
+                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4")) +
   xlab("Type of Polygons") +
   ylab("Time elapsed (s)") +
   ggtitle("time taken by three different functions and cores to compute raster statistics (0.001 degree)")
@@ -181,6 +191,8 @@ long <- tidyr::pivot_longer(final00005,
 
 result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
+                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4")) +
   xlab("Type of Polygons") +
   ylab("Time elapsed (s)") +
   ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
