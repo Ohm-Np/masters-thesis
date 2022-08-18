@@ -1,8 +1,8 @@
 ## 03: sequential vs parallelization (WDPA)
 # Author: Om Prakash Bhandari
 # Last Edit: 2022-06-10
-# Note: contains scripts for parallel processing
-# for sequential routine: refer to code 01 and 02
+# Note: contains scripts for sequential and parallel processing
+# for single asset routine: refer to code 01 and 02
 
 # required libraries
 library(sf)
@@ -12,7 +12,7 @@ library(pbmcapply)
 
 ## (A) terra zonal ----------------------------------------------------
 
-r <- rast("../test/rasters/bolivia/rast_0-1.tif")
+r <- rast("../test/rasters/bolivia/rast_0-0005.tif")
 
 # function only for pa polygons
 pronow <- function(p, r, n) {
@@ -45,18 +45,18 @@ progrid <- function(r, n) {
 
 # wdpa
 p <- read_sf("../sample_wdpa.gpkg")
-for (n in c(4,8,16)) {
+for (n in c(1,4,8,16)) {
   pronow(p, r, n)
 }
 
 # simplified wdpa
 p <- read_sf("../sample_simp-wdpa.gpkg")
-for (n in c(4,8,16)) {
+for (n in c(1,4,8,16)) {
   pronow(p, r, n)
 }
 
 # grid
-for (n in c(4,8,16)) {
+for (n in c(1,4,8,16)) {
   progrid(r, n)
 }
 
@@ -98,12 +98,12 @@ for (n in c(1,4,8,16)) {
 
 # simplified wdpa
 p <- read_sf("../sample_simp-wdpa.gpkg")
-for (n in c(4,8,16)) {
+for (n in c(1,4,8,16)) {
   pronow(p, r, n)
 }
 
 # grid
-for (n in c(4,8,16)) {
+for (n in c(1,4,8,16)) {
   progrid(r, n)
 }
 
@@ -137,17 +137,17 @@ progrid <- function(r, n) {
 
 # wdpa
 p <- read_sf("../sample_wdpa.gpkg")
-for (n in c(4,8,16)) {
+for (n in c(1,4,8,16)) {
   pronow(p, r, n)
 }
 
 # simplified wdpa
 p <- read_sf("../sample_simp-wdpa.gpkg")
-for (n in c(4,8,16)) {
+for (n in c(1,4,8,16)) {
   pronow(p, r, n)
 }
 
 # grid
-for (n in c(4,8,16)) {
+for (n in c(1,4,8,16)) {
   progrid(r, n)
 }
