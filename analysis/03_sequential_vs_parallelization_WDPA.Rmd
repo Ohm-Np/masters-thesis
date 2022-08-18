@@ -30,7 +30,7 @@ library("magrittr")
 In this study, we are going to check how the processing time will differ - (1) sequential approach (2) parallel approach while processing rasters with varying resolutions and for different study areas:
 
 1. wdpa polygons (167)
-2. simplified wdpa polygons (152)
+2. simplified wdpa polygons (167)
 3. fishnet gridded cells (14338)
 
 Let's see how these three different aoi polygons look like:
