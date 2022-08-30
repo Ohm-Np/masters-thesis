@@ -20,7 +20,7 @@ AOIs: WDPA polygons, simplified WDPA polygons and Fishnet polygons
 library(dplyr)
 df <- read.csv("data/results/mapme_biodiversity/mangrove_1-16.csv")
 df.long <- tidyr::pivot_longer(df,
-                               cols = c("WDPA_7495", "Simplified_WDPA_4722", "Fishnet_216425"))
+                               cols = c("WDPA_7495", "Simplified_WDPA_7495", "Fishnet_216425"))
 # rename column name
 df.long <- df.long %>%
   rename(Resource = name)
