@@ -35,7 +35,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -83,6 +83,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -103,6 +104,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -160,11 +164,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -328,7 +336,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -385,7 +393,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-06-10
+<strong>Last updated:</strong> 2022-08-30
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -476,16 +484,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree1e1eb17da545cc5a9f0a006b1828689a941e531etargetblank1e1eb17a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/Ohm-Np/masters-thesis/tree/1e1eb17da545cc5a9f0a006b1828689a941e531e" target="_blank">1e1eb17</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree54907495d0443eefa643269e67fd43975ab07dc4targetblank5490749a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/Ohm-Np/masters-thesis/tree/54907495d0443eefa643269e67fd43975ab07dc4" target="_blank">5490749</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree1e1eb17da545cc5a9f0a006b1828689a941e531etargetblank1e1eb17a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree54907495d0443eefa643269e67fd43975ab07dc4targetblank5490749a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/Ohm-Np/masters-thesis/tree/1e1eb17da545cc5a9f0a006b1828689a941e531e" target="_blank">1e1eb17</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/Ohm-Np/masters-thesis/tree/54907495d0443eefa643269e67fd43975ab07dc4" target="_blank">5490749</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -533,6 +541,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/Ohm-Np/masters-thesis/58daca41127b07fd52765766e22af7f927f10cf8/docs/02_zonal_vs_extract_vs_exactextractr_Fishnets.html" target="_blank">58daca4</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-06-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -733,43 +758,43 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] magrittr_2.0.3        rmarkdown_2.11        plotly_4.9.3         
- [4] RColorBrewer_1.1-2    htmltools_0.5.2       scales_1.1.1         
+ [1] magrittr_2.0.3        rmarkdown_2.15.2      plotly_4.9.3         
+ [4] RColorBrewer_1.1-3    htmltools_0.5.3       scales_1.2.0         
  [7] ggsci_2.9             leaflet.extras2_1.1.0 leaflet.extras_1.0.0 
-[10] forcats_0.5.1         stringr_1.4.0         dplyr_1.0.9          
+[10] forcats_0.5.1         stringr_1.4.1         dplyr_1.0.9          
 [13] purrr_0.3.4           readr_2.1.2           tidyr_1.2.0          
-[16] tibble_3.1.7          ggplot2_3.3.4         tidyverse_1.3.1      
-[19] exactextractr_0.7.2   leaflet_2.0.4.1       terra_1.5-21         
-[22] sf_1.0-7              workflowr_1.7.0      
+[16] tibble_3.1.8          ggplot2_3.3.6         tidyverse_1.3.2      
+[19] exactextractr_0.7.2   leaflet_2.0.4.1       terra_1.6-7          
+[22] sf_1.0-8             
 
 loaded via a namespace (and not attached):
- [1] fs_1.5.0                lubridate_1.7.10        httr_1.4.3             
- [4] rprojroot_2.0.2         tools_3.6.3             backports_1.2.1        
- [7] bslib_0.2.5.1           utf8_1.2.2              R6_2.5.1               
-[10] KernSmooth_2.23-20      lazyeval_0.2.2          DBI_1.1.2              
-[13] colorspace_2.0-1        raster_3.5-12           withr_2.4.2            
-[16] sp_1.4-6                tidyselect_1.1.2        processx_3.5.2         
-[19] compiler_3.6.3          git2r_0.28.0            cli_3.3.0              
-[22] rvest_1.0.2             xml2_1.3.3              labeling_0.4.2         
-[25] sass_0.4.0              classInt_0.4-3          callr_3.7.0            
-[28] proxy_0.4-26            digest_0.6.29           pkgconfig_2.0.3        
-[31] highr_0.8               dbplyr_2.1.1            fastmap_1.1.0          
-[34] htmlwidgets_1.5.3       rlang_1.0.2             readxl_1.3.1           
-[37] rstudioapi_0.13         farver_2.1.0            jquerylib_0.1.4        
-[40] generics_0.1.2          jsonlite_1.8.0          crosstalk_1.1.1        
-[43] Rcpp_1.0.8.3            munsell_0.5.0           fansi_1.0.3            
-[46] lifecycle_1.0.1         stringi_1.7.6           whisker_0.4            
-[49] yaml_2.2.1              grid_3.6.3              promises_1.2.0.1       
-[52] crayon_1.5.1            lattice_0.20-45         haven_2.3.1            
-[55] hms_1.1.1               knitr_1.34              ps_1.5.0               
-[58] pillar_1.7.0            codetools_0.2-18        reprex_2.0.0           
-[61] glue_1.6.2              evaluate_0.14           getPass_0.2-2          
-[64] leaflet.providers_1.9.0 data.table_1.14.2       modelr_0.1.8           
-[67] vctrs_0.4.1             tzdb_0.1.2              httpuv_1.6.1           
-[70] cellranger_1.1.0        gtable_0.3.0            assertthat_0.2.1       
-[73] xfun_0.24               broom_0.7.6             e1071_1.7-9            
-[76] later_1.2.0             viridisLite_0.4.0       class_7.3-20           
-[79] units_0.8-0             ellipsis_0.3.2         </code></pre>
+ [1] fs_1.5.2                lubridate_1.8.0         httr_1.4.4             
+ [4] rprojroot_2.0.3         tools_3.6.3             backports_1.4.1        
+ [7] bslib_0.4.0             utf8_1.2.2              R6_2.5.1               
+[10] KernSmooth_2.23-20      lazyeval_0.2.2          DBI_1.1.3              
+[13] colorspace_2.0-3        raster_3.5-12           withr_2.5.0            
+[16] sp_1.5-0                tidyselect_1.1.2        compiler_3.6.3         
+[19] git2r_0.30.1            cli_3.3.0               rvest_1.0.3            
+[22] xml2_1.3.3              labeling_0.4.2          sass_0.4.2             
+[25] classInt_0.4-7          proxy_0.4-27            digest_0.6.29          
+[28] pkgconfig_2.0.3         highr_0.9               dbplyr_2.2.1           
+[31] fastmap_1.1.0           htmlwidgets_1.5.4       rlang_1.0.4            
+[34] readxl_1.4.0            rstudioapi_0.13         farver_2.1.1           
+[37] jquerylib_0.1.4         generics_0.1.3          jsonlite_1.8.0         
+[40] crosstalk_1.2.0         googlesheets4_1.0.0     Rcpp_1.0.9             
+[43] munsell_0.5.0           fansi_1.0.3             lifecycle_1.0.1        
+[46] stringi_1.7.8           whisker_0.4             yaml_2.3.5             
+[49] grid_3.6.3              promises_1.2.0.1        crayon_1.5.1           
+[52] lattice_0.20-45         haven_2.5.0             hms_1.1.1              
+[55] knitr_1.39              pillar_1.8.1            codetools_0.2-18       
+[58] reprex_2.0.1            glue_1.6.2              evaluate_0.16          
+[61] leaflet.providers_1.9.0 data.table_1.14.2       modelr_0.1.8           
+[64] vctrs_0.4.1             tzdb_0.3.0              httpuv_1.6.5           
+[67] cellranger_1.1.0        gtable_0.3.0            assertthat_0.2.1       
+[70] cachem_1.0.6            xfun_0.32               broom_1.0.0            
+[73] e1071_1.7-11            later_1.3.0             viridisLite_0.4.0      
+[76] class_7.3-20            googledrive_2.0.0       gargle_1.2.0           
+[79] workflowr_1.7.0         units_0.8-0             ellipsis_0.3.2         </code></pre>
 </div>
 </div>
 </div>
