@@ -50,9 +50,12 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra extract (te) using multiple cores (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 11 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.1 degree) with terra extract using number of core/s")
+  ylab("Time elapsed (s)")
 
 
 s <- te01[,c(1,7:11)]
@@ -60,9 +63,12 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra extract (te) using multiple cores (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 11 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.1 degree) with terra extract using number of core/s")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.1 degree te plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -81,9 +87,12 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra extract (te) using multiple cores (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.01 degree) with terra extract using number of core/s")
+  ylab("Time elapsed (s)")
 
 
 s <- te001[,c(1,7:11)]
@@ -91,9 +100,12 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra extract (te) using multiple cores (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.01 degree) with terra extract using number of core/s")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.01 degree te plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -112,9 +124,12 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra extract (te) using multiple cores (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 110 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.001 degree) with terra extract using number of core/s")
+  ylab("Time elapsed (s)")
 
 
 s <- te0001[,c(1,7:11)]
@@ -122,9 +137,12 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra extract (te) using multiple cores (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 110 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.001 degree) with terra extract using number of core/s")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.001 degree te plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -143,9 +161,12 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra extract (te) using multiple cores (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 55 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.0005 degree) with terra extract using number of core/s")
+  ylab("Time elapsed (s)")
 
 
 s <- te00005[,c(1,7:11)]
@@ -153,9 +174,12 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra extract (te) using multiple cores (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 55 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.0005 degree) with terra extract using number of core/s")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.0005 degree te plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -183,9 +207,12 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by exact extract (ee) using multiple cores (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 11 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.1 degree) with exact extract using number of core/s")
+  ylab("Time elapsed (s)")
 
 
 s <- ee01[,c(1,7:11)]
@@ -193,9 +220,12 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by exact extract (ee) using multiple cores (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 11 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.1 degree) with exact extract using number of core/s")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.1 degree ee plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -214,9 +244,12 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by exact extract (ee) using multiple cores (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.01 degree) with exact extract using number of core/s")
+  ylab("Time elapsed (s)")
 
 
 s <- ee001[,c(1,7:11)]
@@ -224,9 +257,12 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by exact extract (ee) using multiple cores (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.01 degree) with exact extract using number of core/s")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.01 degree ee plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -245,9 +281,12 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by exact extract (ee) using multiple cores (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 110 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.001 degree) with exact extract using number of core/s")
+  ylab("Time elapsed (s)")
 
 
 s <- ee0001[,c(1,7:11)]
@@ -255,9 +294,12 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by exact extract (ee) using multiple cores (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 110 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.001 degree) with exact extract using number of core/s")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.001 degree ee plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -276,9 +318,12 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by exact extract (ee) using multiple cores (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 55 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.0005 degree) with exact extract using number of core/s")
+  ylab("Time elapsed (s)")
 
 
 s <- ee00005[,c(1,7:11)]
@@ -286,9 +331,12 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by exact extract (ee) using multiple cores (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 55 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.0005 degree) with exact extract using number of core/s")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.0005 degree ee plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -318,9 +366,12 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra zonal (tz) using multiple cores (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 11 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.1 degree) with terra zonal using number of core/s")
+  ylab("Time elapsed (s)")
 
 
 s <- tz01[,c(1,7:11)]
@@ -328,9 +379,12 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra zonal (tz) using multiple cores (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 11 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.1 degree) with terra zonal using number of core/s")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.1 degree tz plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -349,9 +403,12 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra zonal (tz) using multiple cores (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.01 degree) with terra zonal using number of core/s")
+  ylab("Time elapsed (s)")
 
 
 s <- tz001[,c(1,7:11)]
@@ -359,9 +416,12 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken to compute raster statistics by terra zonal (tz) using multiple cores (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken to compute raster statistics (0.01 degree) with terra zonal using number of core/s")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.01 degree tz plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -399,9 +459,15 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#74c476", "#41ab5d", "#238b45",
+                               "#fc8d59", "#ef6548", "#d7301f",
+                               "#6baed6", "#4292c6", "#2171b5")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee), terra extract (te), and terra zonal (tz) using multiple cores to compute raster statistics (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 11 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.1 degree)")
+  ylab("Time elapsed (s)")
 
 
 s <- final01[,c(1,7:11)]
@@ -409,9 +475,15 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#74c476", "#41ab5d", "#238b45",
+                               "#fc8d59", "#ef6548", "#d7301f",
+                               "#6baed6", "#4292c6", "#2171b5")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee), terra extract (te), and terra zonal (tz) using multiple cores to compute raster statistics (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 11 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.1 degree)")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.1 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -435,9 +507,15 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#74c476", "#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548", "#d7301f",
+                             "#6baed6", "#4292c6", "#2171b5")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee), terra extract (te) and terra zonal (tz) using multiple cores to compute raster statistics (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+  ylab("Time elapsed (s)")
 
 
 s <- final001[,c(1,7:11)]
@@ -445,9 +523,15 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#74c476", "#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548", "#d7301f",
+                             "#6baed6", "#4292c6", "#2171b5")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee), terra extract (te) and terra zonal (tz) using multiple cores to compute raster statistics (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+  ylab("Time elapsed (s)")
 
 # w/o terra zonal
 final001_new <- final001[-c(2:3), ]
@@ -456,9 +540,15 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#74c476", "#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548", "#d7301f",
+                             "#4292c6")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee), terra extract (te) and terra zonal (tz) using multiple cores to compute raster statistics (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+  ylab("Time elapsed (s)")
 
 
 s <- final001_new[,c(1,7:11)]
@@ -466,9 +556,15 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results_new <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#74c476", "#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548", "#d7301f",
+                             "#4292c6")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee), terra extract (te) and terra zonal (tz) using multiple cores to compute raster statistics (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.01 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -501,9 +597,14 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#41ab5d", "#238b45", "#005a32",
+                               "#ef6548", "#d7301f", "#990000")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee) and terra extract (te) using multiple cores to compute raster statistics (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 110 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.001 degree)")
+  ylab("Time elapsed (s)")
 
 
 s <- final0001[,c(1,7:11)]
@@ -511,9 +612,14 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#41ab5d", "#238b45", "#005a32",
+                               "#ef6548", "#d7301f", "#990000")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee) and terra extract (te) using multiple cores to compute raster statistics (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 110 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.001 degree)")
+  ylab("Time elapsed (s)")
 
 # w/o terra extract (sequential)
 final0001_new <- final0001[2:6, ]
@@ -522,9 +628,14 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548", "#d7301f")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee) and terra extract (te) using multiple cores to compute raster statistics (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 110 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+  ylab("Time elapsed (s)")
 
 
 s <- final0001_new[,c(1,7:11)]
@@ -532,9 +643,14 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results_new <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548", "#d7301f")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee) and terra extract (te) using multiple cores to compute raster statistics (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 110 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.001 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -566,9 +682,14 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#41ab5d", "#238b45", "#005a32",
+                               "#ef6548", "#d7301f", "#990000")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee) and terra extract (te) using multiple cores to compute raster statistics (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 55 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+  ylab("Time elapsed (s)")
 
 
 s <- final00005[,c(1,7:11)]
@@ -576,9 +697,14 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#41ab5d", "#238b45", "#005a32",
+                               "#ef6548", "#d7301f", "#990000")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee) and terra extract (te) using multiple cores to compute raster statistics (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 55 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+  ylab("Time elapsed (s)")
 
 # w/o terra extract (sequential)
 final00005_new <- final00005[2:6, ]
@@ -587,9 +713,14 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548", "#d7301f")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee) and terra extract (te) using multiple cores to compute raster statistics (Fishnets I)", subtitle = "(Raster spatial resolution: ~ 55 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+  ylab("Time elapsed (s)")
 
 
 s <- final00005_new[,c(1,7:11)]
@@ -597,9 +728,14 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results_new <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548", "#d7301f")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee) and terra extract (te) using multiple cores to compute raster statistics (Fishnets II)", subtitle = "(Raster spatial resolution: ~ 55 m)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.0005 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
