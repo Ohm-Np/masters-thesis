@@ -124,9 +124,12 @@ df.result.long <- tidyr::pivot_longer(df.result,
 library(ggplot2)
 result.plot <- ggplot(data = df.result.long, aes(x = reorder(name, -value), y = value, fill = Functions)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by three different functions to compute raster statistics (Fishnets I)", subtitle = "(Raster spatial resolution: 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("comparison of time taken by three different functions to compute raster statistics")
+  ylab("Time elapsed (s)")
 ```
 
 
@@ -208,9 +211,12 @@ df.result.long2 <- tidyr::pivot_longer(df.result2,
 library(ggplot2)
 result.plot2 <- ggplot(data = df.result.long2, aes(x = reorder(name, -value), y = value, fill = Functions)) +
   geom_col(position = "dodge") +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by three different functions to compute raster statistics (Fishnets II)", subtitle = "(Raster spatial resolution: 1 km)") +
   xlab("Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("comparison of time taken by three different functions to compute raster statistics")
+  ylab("Time elapsed (s)")
 ```
 
 
