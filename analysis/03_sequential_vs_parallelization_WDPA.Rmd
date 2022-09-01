@@ -91,11 +91,15 @@ long <- tidyr::pivot_longer(final01,
 
 result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
-  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
-                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4", "chartreuse", "chartreuse1", "chartreuse2", "chartreuse3", "chartreuse4")) +
+   scale_fill_manual(values = c("#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32",
+                               "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#990000",
+                               "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#084594")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee), terra extract (te), and terra zonal (tz) using multiple cores to compute raster statistics (WDPA I)", subtitle = "(Raster spatial resolution: ~ 11 km)") +
   xlab("Type of Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.1 degree)")
+  ylab("Time elapsed (s)")
 
 # w/o sequential
 f <- final01[ ,-4]
@@ -104,11 +108,15 @@ longf <- tidyr::pivot_longer(f,
 
 result_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
-  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
-                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4", "chartreuse", "chartreuse1", "chartreuse2", "chartreuse3", "chartreuse4")) +
+  scale_fill_manual(values = c("#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32",
+                               "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#990000",
+                               "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#084594")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee), terra extract (te), and terra zonal (tz) using multiple cores to compute raster statistics (WDPA II)", subtitle = "(Raster spatial resolution: ~ 11 km)") +
   xlab("Type of Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.1 degree)")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.1 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -129,11 +137,15 @@ long <- tidyr::pivot_longer(final001,
 
 result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
-  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
-                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4", "chartreuse", "chartreuse1", "chartreuse2", "chartreuse3", "chartreuse4")) +
+  scale_fill_manual(values = c("#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32",
+                               "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#990000",
+                               "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#084594")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee), terra extract (te), and terra zonal (tz) using multiple cores to compute raster statistics (WDPA I)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Type of Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+  ylab("Time elapsed (s)")
 
 # w/o terra zonal (4,8,16)
 f <- final001[ ,-4]
@@ -142,18 +154,22 @@ longf <- tidyr::pivot_longer(f,
 
 result_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
-  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
-                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4", "chartreuse", "chartreuse1", "chartreuse2", "chartreuse3", "chartreuse4")) +
+  scale_fill_manual(values = c("#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32",
+                               "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#990000",
+                               "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#084594")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee), terra extract (te), and terra zonal (tz) using multiple cores to compute raster statistics (WDPA II)", subtitle = "(Raster spatial resolution: ~ 1 km)") +
   xlab("Type of Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.01 degree)")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.01 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
 result
 ```
 
-_terra zonal(4,8,16) have created much spikes over the graphs, so lets remove zonal and plot only terra extract and exact extract._
+_Fishnets polygon have created much spikes over the graphs, so lets remove the fishnets part and plot only WDPA and simplified WDPA polygons._
 
 ```{r 0.01 degree final plot 2, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
 result_new
@@ -170,11 +186,14 @@ long <- tidyr::pivot_longer(final0001,
 
 result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
-  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
-                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4")) +
+  scale_fill_manual(values = c("#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32",
+                               "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#990000")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee) and terra extract (te) using multiple cores to compute raster statistics (WDPA)", subtitle = "(Raster spatial resolution: ~ 110 m)") +
   xlab("Type of Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.001 degree)")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.001 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -192,11 +211,14 @@ long <- tidyr::pivot_longer(final00005,
 
 result <- ggplot(data = long, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
-  scale_fill_manual(values=c("deepskyblue", "deepskyblue1", "deepskyblue2", "deepskyblue3", "deepskyblue4",
-                             "darkgoldenrod1", "darkgoldenrod2", "darkgoldenrod3", "darkgoldenrod", "darkgoldenrod4")) +
+  scale_fill_manual(values = c("#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32",
+                               "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#990000")) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Time taken by exact extract (ee) and terra extract (te) using multiple cores to compute raster statistics (WDPA)", subtitle = "(Raster spatial resolution: ~ 55 m)") +
   xlab("Type of Polygons") +
-  ylab("Time elapsed (s)") +
-  ggtitle("time taken by three different functions and cores to compute raster statistics (0.0005 degree)")
+  ylab("Time elapsed (s)")
 ```
 
 ```{r 0.0005 degree final plot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
@@ -215,4 +237,3 @@ result
 |0.0005 degree (~55.5 m)|2.7 GB|1. for wdpa polygons, exact extract with 16 cores </br> 2. for fishnets, exact extract single asset|
 
 **terra zonal did not process very small polygons in many occasions, so if your study area contains very small areas, it is recommended not to opt terra zonal.**
-
