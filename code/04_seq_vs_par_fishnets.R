@@ -11,7 +11,7 @@ library(exactextractr)
 library(pbmcapply)
 
 # load raster
-r <- rast("../test/rasters/rast_0-1.tif")
+r <- rast("../test/rasters/rast_0-0005.tif")
 
 ## (A) terra zonal ----------------------------------------------------------
 
