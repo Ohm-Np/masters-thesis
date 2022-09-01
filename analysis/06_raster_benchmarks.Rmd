@@ -23,7 +23,7 @@ The current CRAN version supports computation of 17 different indicators. Among 
 We are going to process 1 km spatial resolution accessibility raster for:  
 
 - WDPA polygons (7495)  
-- Simplified WDPA polygons (4722)  
+- Simplified WDPA polygons (7495)  
 - Fishnets: 5 sq.km. (216425)
 
 ```{r acc, message=FALSE, warning=FALSE, include=FALSE}
@@ -36,10 +36,18 @@ long <- tidyr::pivot_longer(data,
                             cols = c("terra_zonal", "terra_extract", "exact_extract"))
 acc_wdpa <- ggplot(long, aes(Cores, value)) +
   geom_line(aes(colour = name))+
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5),
+        plot.caption = element_text(size = rel(0.7), hjust = 1, face = "italic")) +
+  labs(title = "Time taken to process travel time rasters using multiple cores (WDPA)",
+       subtitle = "(Number of polygons: 7495)",
+       caption = "Source: Nelson et al., 2018") +
+  xlab("Number of cores")+
   ylab("Time elapsed (s)")+
-  xlab("Sequential approach (1) - Parallel approach (2-16)")+
-  geom_point(colour = "red", size = 0.5)+
-  ggtitle("Sequential & Parallel processing - WDPA polygons (7495)")
+  geom_point(colour = "red", size = 0.5) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 900))
 
 # simplified WDPA
 data <-
@@ -48,10 +56,18 @@ long <- tidyr::pivot_longer(data,
                             cols = c("terra_zonal", "terra_extract", "exact_extract"))
 acc_simplified_wdpa <- ggplot(long, aes(Cores, value)) +
   geom_line(aes(colour = name))+
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5),
+        plot.caption = element_text(size = rel(0.7), hjust = 1, face = "italic")) +
+  labs(title = "Time taken to process travel time rasters using multiple cores (Simplified WDPA)",
+       subtitle = "(Number of polygons: 7495)",
+       caption = "Source: Nelson et al., 2018") +
+  xlab("Number of cores")+
   ylab("Time elapsed (s)")+
-  xlab("Sequential approach (1) - Parallel approach (2-16)")+
-  geom_point(colour = "red", size = 0.5)+
-  ggtitle("Sequential & Parallel processing - Simplified WDPA polygons (4722)")
+  geom_point(colour = "red", size = 0.5) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 400))
 
 # fishnets
 data <-
@@ -60,10 +76,18 @@ long <- tidyr::pivot_longer(data,
                             cols = c("terra_zonal", "terra_extract", "exact_extract"))
 acc_fishnets <- ggplot(long, aes(Cores, value)) +
   geom_line(aes(colour = name))+
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5),
+        plot.caption = element_text(size = rel(0.7), hjust = 1, face = "italic")) +
+  labs(title = "Time taken to process travel time rasters using multiple cores (Fishnets)",
+       subtitle = "(Number of polygons: 216425)",
+       caption = "Source: Nelson et al., 2018") +
+  xlab("Number of cores")+
   ylab("Time elapsed (s)")+
-  xlab("Sequential approach (1) - Parallel approach (2-16)")+
-  geom_point(colour = "red", size = 0.5)+
-  ggtitle("Sequential & Parallel processing - Fishnet polygons (216425)")
+  geom_point(colour = "red", size = 0.5) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 8000))
 ```
 
 #### WDPA polygons (7495)
@@ -73,7 +97,7 @@ acc_fishnets <- ggplot(long, aes(Cores, value)) +
 acc_wdpa
 ```
 
-#### Simplified WDPA polygons (4722)
+#### Simplified WDPA polygons (7495)
 
 ```{r accplot2, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
 
@@ -96,21 +120,21 @@ We already saw how using the different number of cores affect the processing tim
 
 library(dplyr)
 orig.data <-
-  read.csv("data/results/mapme_biodiversity/traveltime_1-16_wdpa.csv")
+  read.csv("data/results/mapme_biodiversity/traveltime_1-16_grids.csv")
 # change the df to the factor numbers
 dftofct <- function(n) {
 
-  fct <- orig.data[[2]][1]/orig.data[[2]][n]
+  fct <- orig.data[[4]][1]/orig.data[[4]][n]
   newdf <- data.frame(Cores = n,
                       obtained = fct,
-                      expected = n)
+                      hypothetical = n)
 }
 listed <- lapply(1:16, dftofct)
 final <- do.call(rbind, listed)
 
 # create line plot from the final data
 long <- tidyr::pivot_longer(final,
-                            cols = c("expected", "obtained"))
+                            cols = c("hypothetical", "obtained"))
 # rename name to Factor
 long <- long %>%
   rename(Factor = name)
@@ -118,8 +142,13 @@ long <- long %>%
 fct_plot <- ggplot(long, aes(x = Cores, y = value, group = Factor)) +
   geom_line(aes(linetype = Factor, color = Factor)) +
   geom_point(colour = "red", size = 0.5) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(),
+        plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Absolute factor plot (Fishnet polygons)",
+       subtitle = "(Travel time rasters - exact extract)") +
   scale_linetype_manual(values = c("dotted", "solid")) +
-  ggtitle("factor by which the processing time increases with the increase in the number of cores - terra zonal") +
   ylab("Factor") +
   xlab("Number of cores") +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
@@ -137,7 +166,7 @@ fct_plot
 We are going to process 1 km spatial resolution worldpop raster for:  
 
 - WDPA polygons (7495)  
-- Simplified WDPA polygons (4722)  
+- Simplified WDPA polygons (7495)  
 - Fishnets: 5 sq.km. (216425)
 
 
@@ -151,10 +180,18 @@ long <- tidyr::pivot_longer(data,
                             cols = c("terra_zonal", "terra_extract", "exact_extract"))
 wp_wdpa <- ggplot(long, aes(Cores, value)) +
   geom_line(aes(colour = name))+
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5),
+        plot.caption = element_text(size = rel(0.7), hjust = 1, face = "italic")) +
+  labs(title = "Time taken to process population count rasters using multiple cores (WDPA)",
+       subtitle = "(Number of polygons: 7495)",
+       caption = "Source: WorldPop (2020)") +
+  xlab("Number of cores")+
   ylab("Time elapsed (s)")+
-  xlab("Sequential approach (1) - Parallel approach (2-16)")+
-  geom_point(colour = "red", size = 0.5)+
-  ggtitle("Sequential & Parallel processing - WDPA polygons (7495)")
+  geom_point(colour = "red", size = 0.5) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 800))
 
 # simplified WDPA
 data <-
@@ -163,10 +200,18 @@ long <- tidyr::pivot_longer(data,
                             cols = c("terra_zonal", "terra_extract", "exact_extract"))
 wp_simplified_wdpa <- ggplot(long, aes(Cores, value)) +
   geom_line(aes(colour = name))+
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5),
+        plot.caption = element_text(size = rel(0.7), hjust = 1, face = "italic")) +
+  labs(title = "Time taken to process population count rasters using multiple cores (Simplified WDPA)",
+       subtitle = "(Number of polygons: 7495)",
+       caption = "Source: WorldPop (2020)") +
+  xlab("Number of cores")+
   ylab("Time elapsed (s)")+
-  xlab("Sequential approach (1) - Parallel approach (2-16)")+
   geom_point(colour = "red", size = 0.5)+
-  ggtitle("Sequential & Parallel processing - Simplified WDPA polygons (4722)")
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 350))
 
 # fishnets
 data <-
@@ -175,10 +220,18 @@ long <- tidyr::pivot_longer(data,
                             cols = c("terra_zonal", "terra_extract", "exact_extract"))
 wp_fishnets <- ggplot(long, aes(Cores, value)) +
   geom_line(aes(colour = name))+
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5),
+        plot.caption = element_text(size = rel(0.7), hjust = 1, face = "italic")) +
+  labs(title = "Time taken to process population count rasters using multiple cores (Fishnets)",
+       subtitle = "(Number of polygons: 216425)",
+       caption = "Source: WorldPop (2020)") +
+  xlab("Number of cores")+
   ylab("Time elapsed (s)")+
-  xlab("Sequential approach (1) - Parallel approach (2-16)")+
-  geom_point(colour = "red", size = 0.5)+
-  ggtitle("Sequential & Parallel processing - Fishnet polygons (216425)")
+  geom_point(colour = "red", size = 0.5) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 7000))
 ```
 
 #### WDPA polygons (7495)
@@ -188,7 +241,7 @@ wp_fishnets <- ggplot(long, aes(Cores, value)) +
 wp_wdpa
 ```
 
-#### Simplified WDPA polygons (4722)
+#### Simplified WDPA polygons (7495)
 
 ```{r wp2, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
 
@@ -211,34 +264,41 @@ We already saw how using the different number of cores affect the processing tim
 
 library(dplyr)
 orig.data <-
-  read.csv("data/results/mapme_biodiversity/worldpop_1-16_wdpa.csv")
+  read.csv("data/results/mapme_biodiversity/worldpop_1-16_grids.csv")
 # change the df to the factor numbers
 dftofct <- function(n) {
 
   fct <- orig.data[[2]][1]/orig.data[[2]][n]
   newdf <- data.frame(Cores = n,
                       obtained = fct,
-                      expected = n)
+                      hypothetical = n)
 }
 listed <- lapply(1:16, dftofct)
 final <- do.call(rbind, listed)
 
 # create line plot from the final data
 long <- tidyr::pivot_longer(final,
-                            cols = c("expected", "obtained"))
+                            cols = c("hypothetical", "obtained"))
 # rename name to Factor
 long <- long %>%
   rename(Factor = name)
 
+
 fct_plot2 <- ggplot(long, aes(x = Cores, y = value, group = Factor)) +
   geom_line(aes(linetype = Factor, color = Factor)) +
   geom_point(colour = "red", size = 0.5) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(),
+        plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Absolute factor plot (Fishnet polygons)",
+       subtitle = "(Population count rasters - terra zonal)") +
   scale_linetype_manual(values = c("dotted", "solid")) +
-  ggtitle("factor by which the processing time increases with the increase in the number of cores - terra zonal") +
   ylab("Factor") +
   xlab("Number of cores") +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 16.5))
+
 ```
 
 
@@ -247,13 +307,97 @@ fct_plot2 <- ggplot(long, aes(x = Cores, y = value, group = Factor)) +
 fct_plot2
 ```
 
+
 ## SRTM Elevation
 
 We are going to process 30 m spatial resolution SRTM tiled rasters for:  
 
 - WDPA polygons (7495)  
-- Simplified WDPA polygons (4722)  
+- Simplified WDPA polygons (7495)  
 - Fishnets: 5 sq.km. (216425)
+
+
+```{r srtm, message=FALSE, warning=FALSE, include=FALSE}
+library(ggplot2)
+
+# wdpa
+data <-
+  read.csv("data/results/mapme_biodiversity/srtm_1-16_wdpa.csv")
+long <- tidyr::pivot_longer(data,
+                            cols = c("terra_extract", "exact_extract"))
+sr_wdpa <- ggplot(long, aes(Cores, value)) +
+  geom_line(aes(colour = name))+
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5),
+        plot.caption = element_text(size = rel(0.7), hjust = 1, face = "italic")) +
+  labs(title = "Time taken to process SRTM rasters using multiple cores (WDPA)",
+       subtitle = "(Number of polygons: 7495)",
+       caption = "Source: NASA SRTM") +
+  xlab("Number of cores")+
+  ylab("Time elapsed (s)")+
+  geom_point(colour = "red", size = 0.5) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 4500))
+```
+
+#### WDPA polygons (7495)
+
+```{r srplot, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+
+sr_wdpa
+```
+
+
+### Factor plot (WDPA - terra::extract)
+
+We already saw how using the different number of cores affect the processing time and it follows more or less exponential pattern. Now, we want to see the plot showing factor by which the processing time increases with increase in the number of cores.
+
+```{r fct3, message=FALSE, warning=FALSE, include=FALSE}
+
+library(dplyr)
+orig.data <-
+  read.csv("data/results/mapme_biodiversity/srtm_1-16_wdpa.csv")
+# change the df to the factor numbers
+dftofct <- function(n) {
+
+  fct <- orig.data[[2]][1]/orig.data[[2]][n]
+  newdf <- data.frame(Cores = n,
+                      obtained = fct,
+                      hypothetical = n)
+}
+listed <- lapply(1:16, dftofct)
+final <- do.call(rbind, listed)
+
+# create line plot from the final data
+long <- tidyr::pivot_longer(final,
+                            cols = c("hypothetical", "obtained"))
+# rename name to Factor
+long <- long %>%
+  rename(Factor = name)
+
+fct_plot3 <- ggplot(long, aes(x = Cores, y = value, group = Factor)) +
+  geom_line(aes(linetype = Factor, color = Factor)) +
+  geom_point(colour = "red", size = 0.5) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(),
+        plot.title = element_text(size = rel(1.25), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
+  labs(title = "Absolute factor plot (WDPA polygons)",
+       subtitle = "(SRTM rasters - terra extract)") +
+  scale_linetype_manual(values = c("dotted", "solid")) +
+  ylab("Factor") +
+  xlab("Number of cores") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 16.5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 16.5))
+```
+
+
+```{r fctplot3, message=FALSE, warning=FALSE, include=TRUE, fig.width=12}
+
+fct_plot3
+```
+
 
 
 
