@@ -628,8 +628,8 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
-  scale_fill_manual(values = c("#41ab5d", "#238b45",
-                             "#fc8d59", "#ef6548", "#d7301f")) +
+  scale_fill_manual(values = c("#74c476", "#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548")) +
   theme_classic() +
   theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
         plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
@@ -643,8 +643,8 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results_new <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
-  scale_fill_manual(values = c("#41ab5d", "#238b45",
-                             "#fc8d59", "#ef6548", "#d7301f")) +
+  scale_fill_manual(values = c("#74c476", "#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548")) +
   theme_classic() +
   theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
         plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
@@ -713,8 +713,8 @@ longf <- tidyr::pivot_longer(f,
                              cols = c("grids_255020", "grids_127600", "grids_51336", "grids_25839", "grids_12950"))
 resultf_new <- ggplot(data = longf, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
-  scale_fill_manual(values = c("#41ab5d", "#238b45",
-                             "#fc8d59", "#ef6548", "#d7301f")) +
+  scale_fill_manual(values = c("#74c476", "#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548")) +
   theme_classic() +
   theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
         plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
@@ -728,8 +728,8 @@ longs <- tidyr::pivot_longer(s,
                              cols = c("grids_6600", "grids_2688", "grids_1350", "grids_294", "grids_157"))
 results_new <- ggplot(data = longs, aes(x = reorder(name, -value), y = value, fill = Cores)) +
   geom_col(position = "dodge") +
-  scale_fill_manual(values = c("#41ab5d", "#238b45",
-                             "#fc8d59", "#ef6548", "#d7301f")) +
+  scale_fill_manual(values = c("#74c476", "#41ab5d", "#238b45",
+                             "#fc8d59", "#ef6548")) +
   theme_classic() +
   theme(panel.grid.major.y = element_line(), plot.title = element_text(size = rel(1.25), hjust = 0.5),
         plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +

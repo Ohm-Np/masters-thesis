@@ -46,7 +46,7 @@ The graph below shows us how the order of the polygons during intersection influ
 result
 ```
 
-### Factor plot (WDPA)
+### Factor plot (Fishnet polygons)
 
 We already saw how using the different number of cores affect the processing time and it follows more or less exponential pattern. Now, we want to see the plot showing factor by which the processing time increases with increase in the number of cores.
 
@@ -58,7 +58,7 @@ orig.data <-
 # change the df to the factor numbers
 dftofct <- function(n) {
 
-  fct <- orig.data[[3]][1]/orig.data[[3]][n]
+  fct <- orig.data[[2]][1]/orig.data[[2]][n]
   newdf <- data.frame(Cores = n,
                       obtained = fct,
                       hypothetical = n)
@@ -80,7 +80,7 @@ fct_plot <- ggplot(long, aes(x = Cores, y = value, group = Factor)) +
   theme(panel.grid.major.y = element_line(),
         plot.title = element_text(size = rel(1.25), hjust = 0.5),
         plot.subtitle = element_text(size = rel(1.1), hjust = 0.5)) +
-  labs(title = "Absolute factor plot (WDPA polygons)",
+  labs(title = "Absolute factor plot (Fishnet polygons)",
        subtitle = "(Mangrove extent 2016)") +
   scale_linetype_manual(values = c("dotted", "solid")) +
   ylab("Factor") +
