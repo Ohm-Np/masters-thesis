@@ -363,7 +363,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -372,7 +372,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -381,10 +381,10 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-09-01
+<strong>Last updated:</strong> 2022-09-03
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>masters-thesis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -400,12 +400,12 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -472,16 +472,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree7c5f78413685fdf8dbba821b768165eb88a47a47targetblank7c5f784a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/Ohm-Np/masters-thesis/tree/7c5f78413685fdf8dbba821b768165eb88a47a47" target="_blank">7c5f784</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistreedd3d33a4fcbca85146507cf9e8caebd9a6cc40a5targetblankdd3d33aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/Ohm-Np/masters-thesis/tree/dd3d33a4fcbca85146507cf9e8caebd9a6cc40a5" target="_blank">dd3d33a</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistree7c5f78413685fdf8dbba821b768165eb88a47a47targetblank7c5f784a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomOhmNpmastersthesistreedd3d33a4fcbca85146507cf9e8caebd9a6cc40a5targetblankdd3d33aa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/Ohm-Np/masters-thesis/tree/7c5f78413685fdf8dbba821b768165eb88a47a47" target="_blank">7c5f784</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/Ohm-Np/masters-thesis/tree/dd3d33a4fcbca85146507cf9e8caebd9a6cc40a5" target="_blank">dd3d33a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -491,9 +491,6 @@ Ignored files:
     Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-
-Unstaged changes:
-    Modified:   analysis/04_sequential_vs_parallelization_Fishnets.Rmd
 
 </code></pre>
 <p>
@@ -532,6 +529,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/dd3d33a4fcbca85146507cf9e8caebd9a6cc40a5/analysis/04_sequential_vs_parallelization_Fishnets.Rmd" target="_blank">dd3d33a</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-09-03
+</td>
+<td>
+wflow_publish(“analysis/04_sequential_vs_parallelization_Fishnets.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/Ohm-Np/masters-thesis/dd3d33a4fcbca85146507cf9e8caebd9a6cc40a5/docs/04_sequential_vs_parallelization_Fishnets.html" target="_blank">dd3d33a</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-09-03
+</td>
+<td>
+wflow_publish(“analysis/04_sequential_vs_parallelization_Fishnets.Rmd”)
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -2329,6 +2360,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/dd3d33a4fcbca85146507cf9e8caebd9a6cc40a5/docs/figure/04_sequential_vs_parallelization_Fishnets.Rmd/0.001 degree new final plot-1.png" target="_blank">dd3d33a</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-09-03
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/Ohm-Np/masters-thesis/blob/a926c3e46c16eaac5fdc8fb245f76098f58cd8d4/docs/figure/04_sequential_vs_parallelization_Fishnets.Rmd/0.001 degree new final plot-1.png" target="_blank">a926c3e</a>
 </td>
 <td>
@@ -2388,6 +2430,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/dd3d33a4fcbca85146507cf9e8caebd9a6cc40a5/docs/figure/04_sequential_vs_parallelization_Fishnets.Rmd/0.001 degree new final plot-2.png" target="_blank">dd3d33a</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-09-03
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/Ohm-Np/masters-thesis/blob/a926c3e46c16eaac5fdc8fb245f76098f58cd8d4/docs/figure/04_sequential_vs_parallelization_Fishnets.Rmd/0.001 degree new final plot-2.png" target="_blank">a926c3e</a>
@@ -2582,6 +2635,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/dd3d33a4fcbca85146507cf9e8caebd9a6cc40a5/docs/figure/04_sequential_vs_parallelization_Fishnets.Rmd/0.0005 degree new final plot-1.png" target="_blank">dd3d33a</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-09-03
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/Ohm-Np/masters-thesis/blob/a926c3e46c16eaac5fdc8fb245f76098f58cd8d4/docs/figure/04_sequential_vs_parallelization_Fishnets.Rmd/0.0005 degree new final plot-1.png" target="_blank">a926c3e</a>
 </td>
 <td>
@@ -2641,6 +2705,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/Ohm-Np/masters-thesis/blob/dd3d33a4fcbca85146507cf9e8caebd9a6cc40a5/docs/figure/04_sequential_vs_parallelization_Fishnets.Rmd/0.0005 degree new final plot-2.png" target="_blank">dd3d33a</a>
+</td>
+<td>
+Ohm-Np
+</td>
+<td>
+2022-09-03
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/Ohm-Np/masters-thesis/blob/a926c3e46c16eaac5fdc8fb245f76098f58cd8d4/docs/figure/04_sequential_vs_parallelization_Fishnets.Rmd/0.0005 degree new final plot-2.png" target="_blank">a926c3e</a>
