@@ -7,6 +7,7 @@ output:
 editor_options:
   chunk_output_type: console
 ---
+Title: Cloud-based mass processing of structured global geo-datasets in R: A case study of the World Database on Protected Areas and conservation related geo-variables
 
 The webpage contains results from the hundreds of simulations obtained after processing several datasets. 
 
